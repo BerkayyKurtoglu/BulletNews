@@ -8,10 +8,12 @@ import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bulletnewsoriginal.R
 import com.example.bulletnewsoriginal.model.NewsDataClass
+import com.example.bulletnewsoriginal.view.HomeFragmentDirections
 import kotlinx.android.parcel.Parceler
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
@@ -37,6 +39,13 @@ class HomeFragmentMainRecyclerViewAdapter(
             this.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
             this.adapter = childRecyclerViewAdapter
         }
+
+        holder.view.homeFragment_main_recyclerView_readMoreText.setOnClickListener {
+            Navigation.findNavController(it).navigate(HomeFragmentDirections.actionHomeFragmentToAllNewsFragment(
+                list[position]
+            ))
+        }
+
     }
 
     override fun getItemCount(): Int {

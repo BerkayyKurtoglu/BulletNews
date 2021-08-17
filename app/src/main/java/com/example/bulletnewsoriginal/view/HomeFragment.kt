@@ -39,6 +39,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var mainFragmentViewModel : MainFragmentViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         enterTransition = MaterialFadeThrough()
         exitTransition = MaterialFadeThrough()
@@ -85,7 +86,7 @@ class HomeFragment : Fragment() {
 
         mainFragmentViewModel.topHeadLinesLiveData.observe(viewLifecycleOwner){
             it?.let {
-                viewPagerAdapter = ViewPagerAdapterForHomeFragment(it)
+                viewPagerAdapter = ViewPagerAdapterForHomeFragment(homeFragment_topHeadlines_seeAllText,it)
                 viewPager2.adapter = viewPagerAdapter
             }
         }

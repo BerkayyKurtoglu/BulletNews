@@ -3,6 +3,7 @@ package com.example.bulletnewsoriginal.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
@@ -11,9 +12,11 @@ import com.example.bulletnewsoriginal.model.NewsDataClass
 import com.example.bulletnewsoriginal.util.createPlaceHolder
 import com.example.bulletnewsoriginal.util.uploadImageFromUrl
 import com.example.bulletnewsoriginal.view.HomeFragmentDirections
+import com.google.android.material.button.MaterialButton
 import kotlinx.android.synthetic.main.view_pager_item_home_fragment.view.*
 
 class ViewPagerAdapterForHomeFragment(
+    private val seeAllButton : TextView,
     private val topHeadlinesNews : NewsDataClass
 )
     : RecyclerView.Adapter<ViewPagerAdapterForHomeFragment.ItemHolder>() {
@@ -50,6 +53,11 @@ class ViewPagerAdapterForHomeFragment(
                 extras
             )
         }
+
+        seeAllButton.setOnClickListener {
+            Navigation.findNavController(it).navigate(HomeFragmentDirections.actionHomeFragmentToAllNewsFragment(topHeadlinesNews))
+        }
+
     }
 
     override fun getItemCount(): Int {

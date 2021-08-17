@@ -45,9 +45,13 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/homeFragment_topHeadlines_seeAllText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="See All"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground"
                         android:textColor="@color/blueBrandColor"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
