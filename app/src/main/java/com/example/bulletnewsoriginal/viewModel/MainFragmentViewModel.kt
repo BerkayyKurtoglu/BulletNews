@@ -26,7 +26,7 @@ class MainFragmentViewModel(application: Application) : BaseViewModel(applicatio
     private val subNewsList = ArrayList<NewsDataClass>()
 
     fun getTotalNews(){
-        loadingStatuLiveData.value = false
+        loadingStatuLiveData.value = true
         getTopHeadlines()
         getSubNews()
     }
@@ -34,7 +34,7 @@ class MainFragmentViewModel(application: Application) : BaseViewModel(applicatio
     private fun getSubNews(){
         subNewsList.clear()
         println("From Function")
-        /*launch {
+        launch {
             if (categoryDatabaseDao.getAllCategories().isEmpty()){
                 println("There is no data")
                 loadingStatuLiveData.postValue(false)
@@ -53,7 +53,7 @@ class MainFragmentViewModel(application: Application) : BaseViewModel(applicatio
                 loadingStatuLiveData.postValue(false)
                 subNewsLiveData.value = subNewsList
             }
-        }*/
+        }
 
     }
 
