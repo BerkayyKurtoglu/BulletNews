@@ -17,8 +17,8 @@ Profile | All News | News Details
 - Composables
 ### Soon ; 
 - [ ] Dark mode integration
-- [ ] You can create your own account
-- [ ] Cload storage interation
+- [ ] You are going to be able to create your own account
+- [ ] Cload storage integration
 - [ ] Save news so read them without internet connection
 
 
