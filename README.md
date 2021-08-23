@@ -16,7 +16,7 @@ Profile | All News | News Details
 - Jetpack Navigation Component
 - Composables
 ### Soon ; 
-- [ ] Dark mode integration
+- [x] Dark mode integration
 - [ ] You are going to be able to create your own account
 - [ ] Cload storage integration
 - [ ] Save news so read them without internet connection
