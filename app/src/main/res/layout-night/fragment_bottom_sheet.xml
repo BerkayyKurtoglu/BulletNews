@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.BottomSheetFragment"
+    android:transitionName="container_transition">
+
+
+    <ProgressBar
+        android:id="@+id/bottom_sheet_fragment_progress_bar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottom_sheet_fragment_totaly" />
+
+    <LinearLayout
+        android:id="@+id/bottom_sheet_fragment_totaly"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Most Recommended"
+            android:textStyle="bold"
+            android:textColor="@color/blackBrandColor"
+            android:textSize="25sp"/>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/bottom_sheet_first_checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Science"
+            android:textSize="16sp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/blackBrandColor"
+            android:textStyle="normal" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/bottom_sheet_second_checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Technology"
+            android:textSize="16sp"
+            android:textColor="@color/blackBrandColor"
+            android:textStyle="normal" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/bottom_sheet_third_checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Life Style"
+            android:textSize="16sp"
+            android:textColor="@color/blackBrandColor"
+            android:textStyle="normal" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/bottom_sheet_fourth_checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Crypto Currency"
+            android:textSize="16sp"
+            android:textColor="@color/blackBrandColor"
+            android:textStyle="normal" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/bottom_sheet_fifth_checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Business"
+            android:textSize="16sp"
+            android:textColor="@color/blackBrandColor"
+            android:textStyle="normal" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/bottom_sheet_sixth_checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sport"
+            android:textSize="16sp"
+            android:textColor="@color/blackBrandColor"
+            android:textStyle="normal" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/bottom_sheet_seventh_checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Politicy"
+            android:textSize="16sp"
+            android:textColor="@color/blackBrandColor"
+            android:textStyle="normal" />
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bottom_sheet_fragment_all_categories_button"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="25dp"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="11dp"
+        android:text="Apply"
+        android:textAllCaps="false"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/blueBrandColor"
+        app:strokeWidth="1dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

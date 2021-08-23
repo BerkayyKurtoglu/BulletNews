@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.bulletnewsoriginal.R
 import com.example.bulletnewsoriginal.adapter.AllNewsFragmentRecyclerAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_all_news.*
 
 class AllNewsFragment : Fragment() {
@@ -22,8 +24,9 @@ class AllNewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        allNewsFragment_recyclerView.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+        (activity as AppCompatActivity).activity_FAB.hide()
 
+        allNewsFragment_recyclerView.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
         arguments?.let {
             val allNews = AllNewsFragmentArgs.fromBundle(it).allNews
             val adapter = AllNewsFragmentRecyclerAdapter(allNews)

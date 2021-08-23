@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="185dp"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginEnd="30dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="185dp"
+        android:layout_height="108dp"
+        app:cardCornerRadius="12dp">
+        <ImageView
+            android:id="@+id/childRecycler_Image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:transitionName="shared_element"
+            android:src="@drawable/test"
+            android:scaleType="centerCrop"/>
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <TextView
+        android:id="@+id/childRecycler_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/blackBrandColor"
+        android:textStyle="bold"
+        android:layout_marginTop="14dp"
+        android:text="Planes can damage the nature badly"/>
+
+    <TextView
+        android:id="@+id/childRecycler_writer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:textColor="@color/subtitleTextBrandColor"
+        android:text="By David Leather"
+        android:layout_marginTop="6dp"/>
+
+
+
+
+</LinearLayout>
