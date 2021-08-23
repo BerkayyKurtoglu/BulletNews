@@ -7,11 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProviders
 import com.example.bulletnewsoriginal.R
 import com.example.bulletnewsoriginal.adapter.SearchFragmentChildRecyclerViewAdapter
 import com.example.bulletnewsoriginal.adapter.ViewPagerAdapterForSearchFragment
 import com.example.bulletnewsoriginal.model.NewsDataClass
+import com.example.bulletnewsoriginal.util.SharedPreferenceService
 import com.example.bulletnewsoriginal.viewModel.SearchFragmentViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -25,6 +27,7 @@ class SearchFragment : Fragment() {
 
     private lateinit var searchFragmentViewModel: SearchFragmentViewModel
     private lateinit var viewPagerAdapterForSearchFragment : ViewPagerAdapterForSearchFragment
+    private lateinit var sharedPreferenceService: SharedPreferenceService
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,11 +42,21 @@ class SearchFragment : Fragment() {
         searchFragmentViewModel = ViewModelProviders.of(this).get(SearchFragmentViewModel::class.java)
         operateSystemUI()
         operateTabLayout()
+        sharedPreferenceService = SharedPreferenceService(requireContext())
+        controlDarkMode()
 
         searchFragmentViewModel.getNewsForSearchFragment()
 
         observeViewModel()
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun controlDarkMode(){
+        if (sharedPreferenceService.controlCheckState("dark_mode") == true){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
     private fun observeViewModel(){

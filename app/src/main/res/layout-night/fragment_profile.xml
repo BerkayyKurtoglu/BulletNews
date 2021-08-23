@@ -27,6 +27,7 @@
 
 
         <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/profileFragment_NightMode_Switch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="20dp"

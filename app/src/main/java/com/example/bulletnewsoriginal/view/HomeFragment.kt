@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
@@ -21,6 +22,7 @@ import com.example.bulletnewsoriginal.adapter.HomeFragmentChildRecyclerViewAdapt
 import com.example.bulletnewsoriginal.adapter.HomeFragmentMainRecyclerViewAdapter
 import com.example.bulletnewsoriginal.adapter.ViewPagerAdapterForHomeFragment
 import com.example.bulletnewsoriginal.model.NewsDataClass
+import com.example.bulletnewsoriginal.util.SharedPreferenceService
 import com.example.bulletnewsoriginal.viewModel.MainFragmentViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.transition.MaterialElevationScale
@@ -36,7 +38,7 @@ class HomeFragment : Fragment() {
     private lateinit var viewPager2: ViewPager2
     private lateinit var floatingActionButton: FloatingActionButton
     private lateinit var mainRecyclerViewAdapter: HomeFragmentMainRecyclerViewAdapter
-
+    private lateinit var sharedPreferenceService: SharedPreferenceService
     private lateinit var mainFragmentViewModel : MainFragmentViewModel
 
 
@@ -57,6 +59,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         operateSystemUI()
         operateNestedScrolling()
+        sharedPreferenceService = SharedPreferenceService(requireContext())
+        controlDarkMode()
 
         viewPager2 = homeFragment_ViewPager2
         operateViewPager()
@@ -81,6 +85,13 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
+    private fun controlDarkMode(){
+        if (sharedPreferenceService.controlCheckState("dark_mode") == true){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+    }
 
     private fun observeViewModel(){
 

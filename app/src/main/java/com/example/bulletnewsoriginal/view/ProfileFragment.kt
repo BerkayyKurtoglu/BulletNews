@@ -6,11 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.bulletnewsoriginal.R
+import com.example.bulletnewsoriginal.util.SharedPreferenceService
 import com.google.android.material.transition.MaterialFadeThrough
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : Fragment() {
+
+    private lateinit var sharedPreferenceService: SharedPreferenceService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enterTransition = MaterialFadeThrough()
@@ -28,9 +33,26 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         operateSystemUI()
-
+        sharedPreferenceService = SharedPreferenceService(requireContext())
+        controlDarkMode()
 
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun controlDarkMode(){
+
+        profileFragment_NightMode_Switch.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked){
+                sharedPreferenceService.editCheckState("dark_mode",true)
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }else{
+                sharedPreferenceService.editCheckState("dark_mode",false)
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+            }
+        }
+
+        profileFragment_NightMode_Switch.isChecked = sharedPreferenceService.controlCheckState("dark_mode") == true
+
     }
 
     private fun operateSystemUI(){
