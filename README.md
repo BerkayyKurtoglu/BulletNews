@@ -14,7 +14,7 @@ Profile | All News | News Details
 - View Binding
 - Room Database
 - Jetpack Navigation Component
-- Composables
+- Disposable
 ### Soon ; 
 - [x] Dark mode integration
 - [ ] You are going to be able to create your own account
