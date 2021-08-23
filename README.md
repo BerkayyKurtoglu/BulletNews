@@ -1,5 +1,5 @@
 # BulletNews :newspaper: :call_me_hand:
-Bullet News is an quick news application which uses NEWSAPI and lots of Android Jetpack Components 	:wink:
+Bullet News is a quick news application which uses NEWSAPI and lots of Android Jetpack Components 	:wink:
  Home | Favourities | Search
  ------------------------------------------------------------------------------------------------------------------ | ----------- | ----------
 ![Home Page](https://user-images.githubusercontent.com/88981781/129723588-249239f7-b870-4504-bed2-3e4e9e8f2150.png) |  ![Favourities](https://user-images.githubusercontent.com/88981781/129724060-09aac523-8695-4f6e-95b7-d8d7c7aa133e.png) | ![search](https://user-images.githubusercontent.com/88981781/129724926-31f202d6-c101-488b-9398-35c928ddc6ae.png) 
