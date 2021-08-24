@@ -10,6 +10,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bulletnewsoriginal.R
+import com.example.bulletnewsoriginal.model.Article
 import com.example.bulletnewsoriginal.model.NewsDataClass
 import com.example.bulletnewsoriginal.util.createPlaceHolder
 import com.example.bulletnewsoriginal.util.uploadImageFromUrl
@@ -63,7 +64,8 @@ class ViewPagerAdapterForHomeFragment(
 
         holder.view.view_pager_popUp.setOnClickListener {
             println("clicked")
-            showPopUpMenu(it)
+            //showPopUpMenu(it)
+            showBottomSheet(it,article)
         }
 
     }
@@ -89,6 +91,13 @@ class ViewPagerAdapterForHomeFragment(
         }
         popup.show()
 
+    }
+
+    private fun showBottomSheet(view:View,article : Article){
+        article.url?.let {
+            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToMiniMenuFragment(it))
+
+        }
     }
 
 }

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="url"
+            type="String" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="35dp">
+
+        <TextView
+            android:id="@+id/miniMenuFragment_urlText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{url}"
+            android:clickable="true"
+            android:focusable="true"
+            android:textColor="@color/blueBrandColor"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/materialButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:elevation="0dp"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:text="Share"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            app:iconGravity="start"
+            app:iconPadding="12dp"
+            android:textColor="@color/blackBrandColor"
+            app:icon="@drawable/ic_baseline_share_24"
+            app:iconTint="@color/blackBrandColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/miniMenuFragment_urlText" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:textAlignment="textStart"
+            android:elevation="0dp"
+            app:iconGravity="start"
+            android:focusable="true"
+            app:iconPadding="12dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:text="Save"
+            android:textAllCaps="false"
+            android:textColor="@color/blackBrandColor"
+            app:icon="@drawable/ic_baseline_save_alt_24"
+            app:iconTint="@color/blackBrandColor"
+            app:layout_constraintStart_toStartOf="@+id/materialButton"
+            app:layout_constraintTop_toBottomOf="@+id/materialButton" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

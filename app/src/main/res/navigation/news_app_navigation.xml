@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_homeFragment_to_allNewsFragment"
             app:destination="@id/allNewsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_miniMenuFragment"
+            app:destination="@id/miniMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -82,4 +85,13 @@
             android:id="@+id/action_allNewsFragment_to_newsDetailFragment2"
             app:destination="@id/newsDetailFragment2" />
     </fragment>
+    <dialog
+        android:id="@+id/miniMenuFragment"
+        android:name="com.example.bulletnewsoriginal.view.MiniMenuFragment"
+        android:label="fragment_mini_menu"
+        tools:layout="@layout/fragment_mini_menu" >
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </dialog>
 </navigation>
