@@ -15,6 +15,7 @@ Profile | All News | News Details
 - Room Database
 - Jetpack Navigation Component
 - Disposable
+- Glide
 ### Soon ; 
 - [x] Dark mode integration
 - [ ] You are going to be able to create your own account
