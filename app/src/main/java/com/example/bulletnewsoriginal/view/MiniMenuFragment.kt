@@ -35,6 +35,15 @@ class MiniMenuFragment : BottomSheetDialogFragment() {
             }
         }
 
+        miniMenuFragment_share_button.setOnClickListener {
+            val shareIntent = Intent().apply {
+                this.action = Intent.ACTION_SEND
+                this.putExtra(Intent.EXTRA_TEXT,"You should take a look at this news !")
+                this.type= "text/plain"
+            }
+            startActivity(shareIntent)
+        }
+
         super.onViewCreated(view, savedInstanceState)
     }
 
