@@ -1,8 +1,10 @@
 package com.example.bulletnewsoriginal.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -16,6 +18,7 @@ import com.google.android.material.button.MaterialButton
 import kotlinx.android.synthetic.main.view_pager_item_home_fragment.view.*
 
 class ViewPagerAdapterForHomeFragment(
+    private val context : Context,
     private val seeAllButton : TextView,
     private val topHeadlinesNews : NewsDataClass
 )
@@ -58,11 +61,34 @@ class ViewPagerAdapterForHomeFragment(
             Navigation.findNavController(it).navigate(HomeFragmentDirections.actionHomeFragmentToAllNewsFragment(topHeadlinesNews))
         }
 
+        holder.view.view_pager_popUp.setOnClickListener {
+            println("clicked")
+            showPopUpMenu(it)
+        }
+
     }
 
     override fun getItemCount(): Int {
         return topHeadlinesNews.articles.size
     }
 
+    private fun showPopUpMenu(view : View){
+
+        val popup = PopupMenu(context,view)
+        popup.menuInflater.inflate(R.menu.mini_menu_items,popup.menu)
+        popup.setOnMenuItemClickListener {
+
+            if (it.itemId == R.id.share){
+                println("share clicked")
+            }
+            if (it.itemId == R.id.save){
+                println("save clicked")
+            }
+
+            true
+        }
+        popup.show()
+
+    }
 
 }

@@ -97,7 +97,7 @@ class HomeFragment : Fragment() {
 
         mainFragmentViewModel.topHeadLinesLiveData.observe(viewLifecycleOwner){
             it?.let {
-                viewPagerAdapter = ViewPagerAdapterForHomeFragment(homeFragment_topHeadlines_seeAllText,it)
+                viewPagerAdapter = ViewPagerAdapterForHomeFragment(requireContext(),homeFragment_topHeadlines_seeAllText,it)
                 viewPager2.adapter = viewPagerAdapter
             }
         }

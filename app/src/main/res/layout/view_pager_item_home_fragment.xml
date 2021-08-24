@@ -1,86 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/viewPager_CardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius="25dp"
-        app:cardElevation="8dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginBottom="15dp"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
-        android:layout_marginBottom="15dp"
-        android:layout_marginHorizontal="5dp">
+        app:cardCornerRadius="25dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/viewPager_CardView_NewsImageView"
-                android:layout_width="match_parent"
-                android:transitionName="shared_element"
-                android:layout_height="166dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/test" />
-
-            <TextView
-                android:id="@+id/viewPager_CardView_TitleTextView"
-                android:layout_width="match_parent"
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="25dp"
-                android:layout_marginTop="15dp"
-                android:maxLines="2"
-                android:text="Covid-19 is in creasing at all over the  world"
-                android:textAlignment="textStart"
-                android:textColor="@color/blackBrandColor"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="13dp"
+                app:cardBackgroundColor="#80FFFFFF"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="25dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="15dp">
-
-                <TextView
-                    android:id="@+id/viewPager_CardView_SourceTextView"
+                <ImageButton
+                    android:id="@+id/view_pager_popUp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="New York Bulletin"
-                    android:textColor="@color/subtitleTextBrandColor"
-                    android:textSize="12sp" />
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:paddingVertical="20dp"
+                    android:paddingHorizontal="13dp"
+                    android:foregroundGravity="center"
+                    android:src="@drawable/ic_mini_menu_icon" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/viewPager_CardView_NewsImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="166dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/test"
+                    android:transitionName="shared_element" />
 
                 <TextView
-                    android:id="@+id/viewPager_CardView_ReadDetailsTextView"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/viewPager_CardView_TitleTextView"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:shadowDy="-5"
-                    android:text="Read Details"
-                    android:textColor="@color/blueBrandColor"
-                    android:textSize="12sp" />
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginTop="15dp"
+                    android:maxLines="2"
+                    android:text="Covid-19 is in creasing at all over the  world"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/blackBrandColor"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp">
+
+                    <TextView
+                        android:id="@+id/viewPager_CardView_SourceTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:text="New York Bulletin"
+                        android:textColor="@color/subtitleTextBrandColor"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/viewPager_CardView_ReadDetailsTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:shadowDy="-5"
+                        android:text="Read Details"
+                        android:textColor="@color/blueBrandColor"
+                        android:textSize="12sp" />
 
 
-            </RelativeLayout>
+                </RelativeLayout>
 
 
-        </LinearLayout>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
