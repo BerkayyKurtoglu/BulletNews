@@ -64,6 +64,9 @@
         <argument
             android:name="article"
             app:argType="com.example.bulletnewsoriginal.model.Article" />
+        <action
+            android:id="@+id/action_newsDetailFragment2_to_miniMenuFragment"
+            app:destination="@id/miniMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/bottomSheetFragment2"

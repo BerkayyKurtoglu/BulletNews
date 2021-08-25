@@ -61,7 +61,7 @@
         app:layout_constraintBottom_toTopOf="@id/activity_bottom_menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_add_24"
-        android:tint="?attr/colorOnPrimary"
+        android:tint="@color/white"
         tools:ignore="SpeakableTextPresentCheck"
         style="@style/Widget.MaterialComponents.FloatingActionButton"
         android:focusable="true"

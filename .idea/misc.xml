@@ -11,6 +11,7 @@
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/drawable/ic_baseline_save_alt_24.xml" value="0.21388888888888888" />
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.25555555555555554" />
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.21388888888888888" />
+        <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/drawable/ic_baseline_share_24_mini.xml" value="0.22037037037037038" />
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/drawable/ic_launcher_background.xml" value="0.24259259259259258" />
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/drawable/ic_mini_menu_icon.xml" value="0.21388888888888888" />
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/drawable/mini_menu_background.xml" value="0.21388888888888888" />
@@ -20,11 +21,12 @@
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout-night/child_recycler_view_item.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout-night/fragment_bottom_sheet.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout-night/fragment_home.xml" value="0.1947463768115942" />
+        <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout-night/fragment_news_detail.xml" value="0.2028985507246377" />
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout-night/fragment_profile.xml" value="0.1897644927536232" />
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout-night/view_pager_item_home_fragment.xml" value="0.1947463768115942" />
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout/activity_main.xml" value="0.2128623188405797" />
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout/all_fragment_recyclerview_item.xml" value="0.19655797101449277" />
-        <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout/child_recycler_view_item.xml" value="0.2128623188405797" />
+        <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout/child_recycler_view_item.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout/fragment_all_news.xml" value="0.19655797101449277" />
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.2128623188405797" />
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout/fragment_home.xml" value="0.2" />

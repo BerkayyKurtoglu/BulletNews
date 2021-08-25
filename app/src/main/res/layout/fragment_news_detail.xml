@@ -9,88 +9,141 @@
             type="com.example.bulletnewsoriginal.model.Article" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.NewsDetailFragment"
         android:paddingHorizontal="25dp"
         android:paddingTop="35dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:context=".view.NewsDetailFragment">
 
-            <ImageView
-                android:id="@+id/imageView"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="235dp"
-                android:transitionName="shared_element"
-                android:scaleType="centerCrop"
-                android:downloadImage="@{news.urlToImage}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="News Photo" />
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{news.author}"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:paddingHorizontal="18dp"
-                android:paddingVertical="8dp"
-                android:background="@drawable/details_outher_background"
-                android:layout_margin="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="@+id/imageView" />
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="235dp"
+                    android:contentDescription="News Photo"
+                    android:downloadImage="@{news.urlToImage}"
+                    android:scaleType="centerCrop"
+                    android:transitionName="shared_element"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:text="@{news.title}"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/blackBrandColor"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:background="@drawable/details_outher_background"
+                    android:paddingHorizontal="18dp"
+                    android:paddingVertical="8dp"
+                    android:text="@{news.author}"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/imageView"
+                    app:layout_constraintTop_toTopOf="@+id/imageView" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
-                android:text="@{news.content}"
-                android:textSize="16sp"
-                android:textColor="@color/detailsTextColor"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:text="@{news.title}"
+                    android:textColor="@color/blackBrandColor"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/details_fragment_go_website_button"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="25dp"
-                android:text="Open at Website"
-                android:textAllCaps="false"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4"
-                app:strokeColor="@color/blueBrandColor"
-                app:strokeWidth="0.5dp" />
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
+                    android:text="@{news.content}"
+                    android:textColor="@color/detailsTextColor"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/details_fragment_go_website_button"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="25dp"
+                    android:text="Open at Website"
+                    android:textAllCaps="false"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4"
+                    app:strokeColor="@color/blueBrandColor"
+                    app:strokeWidth="0.5dp" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+        </androidx.core.widget.NestedScrollView>
 
-    </androidx.core.widget.NestedScrollView>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/mother_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:tint="@color/white"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_baseline_add_24" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/share_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="13dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:tint="@color/white"
+            android:visibility="invisible"
+            android:backgroundTint="@color/subtitleTextBrandColor"
+            app:layout_constraintBottom_toTopOf="@+id/mother_fab"
+            app:layout_constraintEnd_toEndOf="@+id/mother_fab"
+            app:layout_constraintStart_toStartOf="@+id/mother_fab"
+            app:srcCompat="@drawable/ic_baseline_share_24" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/save_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="@color/subtitleTextBrandColor"
+            android:clickable="true"
+            android:focusable="true"
+            android:tint="@color/white"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/share_fab"
+            app:layout_constraintEnd_toEndOf="@+id/share_fab"
+            app:layout_constraintStart_toStartOf="@+id/share_fab"
+            app:srcCompat="@drawable/ic_baseline_save_alt_24" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

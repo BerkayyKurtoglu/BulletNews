@@ -19,9 +19,7 @@ class HomeFragmentChildRecyclerViewAdapter(
     private val context : Context
 )
     : RecyclerView.Adapter<HomeFragmentChildRecyclerViewAdapter.ItemHolder>() {
-    class ItemHolder(val view : View) : RecyclerView.ViewHolder(view) {
-
-    }
+    class ItemHolder(val view : View) : RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.child_recycler_view_item,parent,false)
@@ -45,6 +43,13 @@ class HomeFragmentChildRecyclerViewAdapter(
             val extras = FragmentNavigatorExtras(holder.view.childRecycler_Image to "shared_element")
             Navigation.findNavController(it).navigate(
                 HomeFragmentDirections.actionHomeFragmentToNewsDetailFragment2(article),extras)
+        }
+
+        holder.view.childRecycler_Share.setOnClickListener { view->
+            val url = article.url
+            url?.let {
+                Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToMiniMenuFragment(it))
+            }
         }
 
     }

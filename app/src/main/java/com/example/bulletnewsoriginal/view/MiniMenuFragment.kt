@@ -43,7 +43,7 @@ class MiniMenuFragment : BottomSheetDialogFragment() {
     private fun shareUrl(url : String){
         val shareIntent = Intent().apply {
             this.action = Intent.ACTION_SEND
-            this.putExtra(Intent.EXTRA_TEXT,url)
+            this.putExtra(Intent.EXTRA_TEXT,"You should take a look at that news : \n $url")
             this.type= "text/plain"
         }
         startActivity(shareIntent)
