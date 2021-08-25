@@ -21,6 +21,7 @@ Dark Mode |
 - Glide
 ### Soon ; 
 - [x] Dark mode integration
-- [ ] You are going to be able to create your own account
+- [x] You will be able to share news 
+- [ ] You will be able to create your own account
 - [ ] Cload storage integration
 - [ ] Save news so read them without internet connection
