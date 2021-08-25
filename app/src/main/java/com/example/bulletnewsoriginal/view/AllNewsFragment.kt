@@ -25,14 +25,14 @@ class AllNewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         (activity as AppCompatActivity).activity_FAB.hide()
-
         allNewsFragment_recyclerView.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
         arguments?.let {
             val allNews = AllNewsFragmentArgs.fromBundle(it).allNews
-            val adapter = AllNewsFragmentRecyclerAdapter(allNews)
-            allNewsFragment_recyclerView.adapter = adapter
+            allNews?.let {
+                val adapter = AllNewsFragmentRecyclerAdapter(allNews)
+                allNewsFragment_recyclerView.adapter = adapter
+            }
         }
-
         super.onViewCreated(view, savedInstanceState)
     }
 

@@ -1,4 +1,4 @@
-package com.example.bulletnewsoriginal.service
+package com.example.bulletnewsoriginal.service.api
 
 import com.example.bulletnewsoriginal.model.NewsDataClass
 import io.reactivex.Single

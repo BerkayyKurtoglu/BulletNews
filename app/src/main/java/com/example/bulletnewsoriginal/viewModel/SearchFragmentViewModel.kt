@@ -3,7 +3,7 @@ package com.example.bulletnewsoriginal.viewModel
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.example.bulletnewsoriginal.model.NewsDataClass
-import com.example.bulletnewsoriginal.service.RetrofitService
+import com.example.bulletnewsoriginal.service.api.RetrofitService
 import kotlinx.coroutines.launch
 
 class SearchFragmentViewModel(application: Application) : BaseViewModel(application=application) {

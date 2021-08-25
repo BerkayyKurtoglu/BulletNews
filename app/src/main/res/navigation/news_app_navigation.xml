@@ -83,7 +83,8 @@
         android:label="AllNewsFragment" >
         <argument
             android:name="allNews"
-            app:argType="com.example.bulletnewsoriginal.model.NewsDataClass" />
+            app:argType="com.example.bulletnewsoriginal.model.NewsDataClass"
+            app:nullable="true" />
         <action
             android:id="@+id/action_allNewsFragment_to_newsDetailFragment2"
             app:destination="@id/newsDetailFragment2" />
@@ -94,7 +95,7 @@
         android:label="fragment_mini_menu"
         tools:layout="@layout/fragment_mini_menu" >
         <argument
-            android:name="url"
-            app:argType="string" />
+            android:name="article"
+            app:argType="com.example.bulletnewsoriginal.model.Article" />
     </dialog>
 </navigation>

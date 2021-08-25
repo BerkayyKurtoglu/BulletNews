@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.example.bulletnewsoriginal.model.CategoryDatabaseItem
 import com.example.bulletnewsoriginal.model.NewsDataClass
-import com.example.bulletnewsoriginal.service.CategoryDatabase
-import com.example.bulletnewsoriginal.service.RetrofitService
+import com.example.bulletnewsoriginal.service.categoryDatabase.CategoryDatabase
+import com.example.bulletnewsoriginal.service.api.RetrofitService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver

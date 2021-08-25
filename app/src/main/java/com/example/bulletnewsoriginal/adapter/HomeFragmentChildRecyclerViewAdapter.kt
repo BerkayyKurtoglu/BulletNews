@@ -48,8 +48,9 @@ class HomeFragmentChildRecyclerViewAdapter(
         holder.view.childRecycler_Share.setOnClickListener { view->
             val url = article.url
             url?.let {
-                Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToMiniMenuFragment(it))
+                //Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToMiniMenuFragment(it))
             }
+            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToMiniMenuFragment(article))
         }
 
     }

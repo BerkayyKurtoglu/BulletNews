@@ -1,7 +1,8 @@
 package com.example.bulletnewsoriginal.model
 
+import androidx.room.Embedded
 
 data class Source(
-    val id: Any?,
+    @Embedded val id: Any?,
     val name: String?
 )

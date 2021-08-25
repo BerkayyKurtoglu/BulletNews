@@ -94,10 +94,7 @@ class ViewPagerAdapterForHomeFragment(
     }
 
     private fun showBottomSheet(view:View,article : Article){
-        article.url?.let {
-            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToMiniMenuFragment(it))
-
-        }
+            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToMiniMenuFragment(article))
     }
 
 }

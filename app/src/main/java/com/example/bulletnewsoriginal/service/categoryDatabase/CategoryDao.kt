@@ -1,4 +1,4 @@
-package com.example.bulletnewsoriginal.service
+package com.example.bulletnewsoriginal.service.categoryDatabase
 
 import androidx.room.Dao
 import androidx.room.Insert

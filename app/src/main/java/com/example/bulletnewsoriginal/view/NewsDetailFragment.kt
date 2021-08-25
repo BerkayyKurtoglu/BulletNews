@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.example.bulletnewsoriginal.R
 import com.example.bulletnewsoriginal.databinding.FragmentNewsDetailBinding
+import com.example.bulletnewsoriginal.model.Article
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_news_detail.*
 
@@ -51,6 +52,7 @@ class NewsDetailFragment : Fragment() {
                     handleShareFab(it)
                 }
             }
+            save_fab.setOnClickListener { saveNews(article)}
         }
 
         mother_fab.show()
@@ -61,6 +63,10 @@ class NewsDetailFragment : Fragment() {
         }
 
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun saveNews(article: Article) {
+
     }
 
     private fun setVisibility(clicked : Boolean){

@@ -1,4 +1,4 @@
-package com.example.bulletnewsoriginal.service
+package com.example.bulletnewsoriginal.service.categoryDatabase
 
 import android.content.Context
 import androidx.room.Database
@@ -24,7 +24,7 @@ abstract class CategoryDatabase : RoomDatabase(){
         }
 
         private fun createDatabase(context : Context) = Room.databaseBuilder(
-            context.applicationContext,CategoryDatabase::class.java,"categorydatabase")
+            context.applicationContext, CategoryDatabase::class.java,"categorydatabase")
             .build()
     }
 

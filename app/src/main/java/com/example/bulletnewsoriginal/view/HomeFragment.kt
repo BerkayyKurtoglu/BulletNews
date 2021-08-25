@@ -1,8 +1,6 @@
 package com.example.bulletnewsoriginal.view
 
-import android.content.Context
 import android.os.Bundle
-import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,21 +11,18 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.bulletnewsoriginal.R
-import com.example.bulletnewsoriginal.adapter.HomeFragmentChildRecyclerViewAdapter
 import com.example.bulletnewsoriginal.adapter.HomeFragmentMainRecyclerViewAdapter
+import com.example.bulletnewsoriginal.adapter.AdapterListener
 import com.example.bulletnewsoriginal.adapter.ViewPagerAdapterForHomeFragment
-import com.example.bulletnewsoriginal.model.NewsDataClass
+import com.example.bulletnewsoriginal.model.Article
 import com.example.bulletnewsoriginal.util.SharedPreferenceService
 import com.example.bulletnewsoriginal.viewModel.MainFragmentViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.transition.MaterialElevationScale
 import com.google.android.material.transition.MaterialFadeThrough
-import com.google.android.material.transition.SlideDistanceProvider
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlin.math.abs
