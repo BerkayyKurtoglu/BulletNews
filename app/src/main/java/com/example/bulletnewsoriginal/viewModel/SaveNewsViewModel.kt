@@ -42,5 +42,4 @@ class SaveNewsViewModel(application: Application) : BaseViewModel(application) {
                 }
         } }
     }
-
 }

@@ -26,6 +26,8 @@ fun createPlaceHolder(context : Context):CircularProgressDrawable{
 }
 
 @BindingAdapter("android:downloadImage")
-fun downloadImageWithBinding(imageView: ImageView,uri : String){
-    imageView.uploadImageFromUrl(uri, createPlaceHolder(imageView.context))
+fun downloadImageWithBinding(imageView: ImageView,uri : String?){
+    uri?.let {
+        imageView.uploadImageFromUrl(uri, createPlaceHolder(imageView.context))
+    }
 }

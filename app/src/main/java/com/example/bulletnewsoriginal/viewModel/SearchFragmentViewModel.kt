@@ -1,6 +1,9 @@
 package com.example.bulletnewsoriginal.viewModel
 
 import android.app.Application
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.bulletnewsoriginal.model.NewsDataClass
 import com.example.bulletnewsoriginal.service.api.RetrofitService
@@ -16,21 +19,26 @@ class SearchFragmentViewModel(application: Application) : BaseViewModel(applicat
     private val searchNewsCategories = ArrayList<String>()
     private val searchNewsResponseList = ArrayList<NewsDataClass>()
 
-    fun getNewsForSearchFragment(){
+    fun getNewsForSearchFragment(connectivityManager : ConnectivityManager){
         progressLiveData.value = true
-        launch {
-            searchNewsResponseList.clear()
-            addArrayList()
-            searchNewsCategories.forEach {
-                val response = retrofitService.getSingleForEverything(it)
-                if (response.isSuccessful){
-                    response.body()?.let {
-                        searchNewsResponseList.add(it)
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)?.state == NetworkInfo.State.CONNECTED ||
+            connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)?.state == NetworkInfo.State.CONNECTED){
+            launch {
+                searchNewsResponseList.clear()
+                addArrayList()
+                searchNewsCategories.forEach {
+                    val response = retrofitService.getSingleForEverything(it)
+                    if (response.isSuccessful){
+                        response.body()?.let {
+                            searchNewsResponseList.add(it)
+                        }
                     }
                 }
+                progressLiveData.value = false
+                newsLiveData.postValue(searchNewsResponseList)
             }
-            progressLiveData.value = false
-            newsLiveData.postValue(searchNewsResponseList)
+        }else{
+            Toast.makeText(getApplication(), "Upps 🤔 looks like, you are not connected", Toast.LENGTH_LONG).show()
         }
     }
 

@@ -1,5 +1,7 @@
 package com.example.bulletnewsoriginal.view
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.transition.ChangeBounds
 import androidx.fragment.app.Fragment
@@ -45,7 +47,7 @@ class SearchFragment : Fragment() {
         sharedPreferenceService = SharedPreferenceService(requireContext())
         controlDarkMode()
 
-        searchFragmentViewModel.getNewsForSearchFragment()
+        searchFragmentViewModel.getNewsForSearchFragment(requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
 
         observeViewModel()
         super.onViewCreated(view, savedInstanceState)

@@ -1,5 +1,7 @@
 package com.example.bulletnewsoriginal.view
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -67,10 +69,10 @@ class HomeFragment : Fragment() {
         mainRecyclerViewAdapter = HomeFragmentMainRecyclerViewAdapter(arrayListOf(),requireContext())
 
         mainFragmentViewModel = ViewModelProviders.of(this).get(MainFragmentViewModel::class.java)
-        mainFragmentViewModel.getTotalNews()
+        mainFragmentViewModel.getTotalNews(requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
 
         homeFragment_swipeRefreshLayout.setOnRefreshListener {
-            mainFragmentViewModel.getTotalNews()
+            mainFragmentViewModel.getTotalNews(requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
             homeFragment_swipeRefreshLayout.isRefreshing = false
         }
 

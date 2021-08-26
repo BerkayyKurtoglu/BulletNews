@@ -41,4 +41,27 @@
 
     </com.google.android.material.card.MaterialCardView>
 
+
+    <TextView
+        android:id="@+id/fragmentProfile_savedNewsText"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/profile_text_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="20dp"
+        android:text="Saved News"
+        android:textColor="@color/blackBrandColor"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
 </LinearLayout>

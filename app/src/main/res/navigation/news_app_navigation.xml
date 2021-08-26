@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_profileFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_savedNewsFragment"
+            app:destination="@id/savedNewsFragment" />
     </fragment>
     <fragment
         android:id="@+id/newsDetailFragment2"
@@ -101,4 +104,13 @@
             android:id="@+id/action_miniMenuFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/savedNewsFragment"
+        android:name="com.example.bulletnewsoriginal.view.SavedNewsFragment"
+        android:label="fragment_saved_news"
+        tools:layout="@layout/fragment_saved_news" >
+        <action
+            android:id="@+id/action_savedNewsFragment_to_newsDetailFragment2"
+            app:destination="@id/newsDetailFragment2" />
+    </fragment>
 </navigation>

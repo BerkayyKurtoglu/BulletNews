@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.navigation.fragment.findNavController
 import com.example.bulletnewsoriginal.R
 import com.example.bulletnewsoriginal.util.SharedPreferenceService
 import com.google.android.material.transition.MaterialFadeThrough
@@ -36,8 +37,15 @@ class ProfileFragment : Fragment() {
         sharedPreferenceService = SharedPreferenceService(requireContext())
         controlDarkMode()
 
+        fragmentProfile_savedNewsText.setOnClickListener { savedTextClicked() }
+
         super.onViewCreated(view, savedInstanceState)
     }
+
+    private fun savedTextClicked() {
+        findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToSavedNewsFragment())
+    }
+
 
     private fun controlDarkMode(){
 

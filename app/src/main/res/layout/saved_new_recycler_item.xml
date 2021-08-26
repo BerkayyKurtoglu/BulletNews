@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="article"
+            type="com.example.bulletnewsoriginal.model.Article" />
+    </data>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:paddingHorizontal="25dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_marginTop="20dp"
+    android:foreground="?android:attr/selectableItemBackground">
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        app:cardCornerRadius="15dp">
+
+        <ImageView
+            android:id="@+id/savedNews_recycler_image"
+            android:layout_width="match_parent"
+            android:transitionName="shared_element"
+            android:layout_height="match_parent"
+            android:downloadImage="@{article.urlToImage}"
+            android:scaleType="centerCrop"
+            android:src="@drawable/test"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="17dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/savedNews_recycler_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/blackBrandColor"
+            android:textSize="17sp"
+            android:maxLines="3"
+            android:text="@{article.title}"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/savedNews_recycler_author"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@{article.author}"
+                android:textColor="@color/subtitleTextBrandColor"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Read"
+                android:textColor="@color/blueBrandColor"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+</layout>

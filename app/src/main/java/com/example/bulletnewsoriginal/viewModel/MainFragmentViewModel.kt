@@ -1,6 +1,9 @@
 package com.example.bulletnewsoriginal.viewModel
 
 import android.app.Application
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.bulletnewsoriginal.model.CategoryDatabaseItem
 import com.example.bulletnewsoriginal.model.NewsDataClass
@@ -25,10 +28,15 @@ class MainFragmentViewModel(application: Application) : BaseViewModel(applicatio
     val subNewsLiveData = MutableLiveData<ArrayList<NewsDataClass>>()
     private val subNewsList = ArrayList<NewsDataClass>()
 
-    fun getTotalNews(){
+    fun getTotalNews(connectivityManager: ConnectivityManager){
         loadingStatuLiveData.value = true
-        getTopHeadlines()
-        getSubNews()
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)?.state == NetworkInfo.State.CONNECTED ||
+            connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)?.state == NetworkInfo.State.CONNECTED){
+            getTopHeadlines()
+            getSubNews()
+        }else{
+            Toast.makeText(getApplication(), "Upps 🤔 looks like, you are not connected", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun getSubNews(){

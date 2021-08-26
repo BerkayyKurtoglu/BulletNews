@@ -12,7 +12,7 @@ interface SavingNewsDao {
     @Insert
     suspend fun insertToDatabase(article : Article)
 
-    @Query("SELECT * FROM article")
+    @Query("SELECT * FROM article ORDER BY id DESC")
     suspend fun getAllSavedNews() : List<Article>
 
     @Query("DELETE FROM article WHERE id = :id")
