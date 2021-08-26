@@ -9,14 +9,14 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import com.example.bulletnewsoriginal.databinding.FragmentMiniMenuBinding
 import com.example.bulletnewsoriginal.model.Article
-import com.example.bulletnewsoriginal.viewModel.MiniMenuViewModel
+import com.example.bulletnewsoriginal.viewModel.SaveNewsViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_mini_menu.*
 
 class MiniMenuFragment : BottomSheetDialogFragment() {
 
     private lateinit var dataBinding : FragmentMiniMenuBinding
-    private lateinit var miniMenuViewModel: MiniMenuViewModel
+    private lateinit var saveNewsViewModel: SaveNewsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,10 +27,12 @@ class MiniMenuFragment : BottomSheetDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        miniMenuViewModel = ViewModelProviders.of(this).get(MiniMenuViewModel::class.java)
+        saveNewsViewModel = ViewModelProviders.of(this).get(SaveNewsViewModel::class.java)
         arguments?.let {
             val article = MiniMenuFragmentArgs.fromBundle(it).article
-            miniMenuFragment_save_button.setOnClickListener { saveArticle(article) }
+
+            miniMenuFragment_save_button.setOnClickListener { saveArticle(article,it) }
+
             article.url?.let {url->
                 dataBinding.url = url
                 miniMenuFragment_urlText.setOnClickListener {
@@ -40,13 +42,12 @@ class MiniMenuFragment : BottomSheetDialogFragment() {
                 miniMenuFragment_share_button.setOnClickListener {shareUrl(url)}
             }
         }
-        miniMenuViewModel.getAllSavingNews()
         observeViewModel()
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun saveArticle(article: Article){
-        miniMenuViewModel.saveNewsToRoom(article)
+    private fun saveArticle(article: Article, v : View){
+        saveNewsViewModel.saveNewsToRoom(article)
     }
 
     private fun shareUrl(url : String){
@@ -59,8 +60,7 @@ class MiniMenuFragment : BottomSheetDialogFragment() {
     }
 
     private fun observeViewModel(){
-
-        miniMenuViewModel.progressBarLiveData.observe(viewLifecycleOwner){
+        saveNewsViewModel.progressBarLiveData.observe(viewLifecycleOwner){
             if (it){
                 miniMenuFragment_progressBar.visibility = View.VISIBLE
                 miniMenuFragment_urlText.visibility = View.INVISIBLE
@@ -73,7 +73,6 @@ class MiniMenuFragment : BottomSheetDialogFragment() {
                 miniMenuFragment_save_button.visibility = View.VISIBLE
             }
         }
-
     }
 
 }

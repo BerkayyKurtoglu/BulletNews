@@ -10,10 +10,12 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.bulletnewsoriginal.R
 import com.example.bulletnewsoriginal.databinding.FragmentNewsDetailBinding
 import com.example.bulletnewsoriginal.model.Article
+import com.example.bulletnewsoriginal.viewModel.SaveNewsViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_news_detail.*
 
@@ -23,6 +25,8 @@ class NewsDetailFragment : Fragment() {
     private val rotateClose : Animation by lazy { AnimationUtils.loadAnimation(context,R.anim.rotate_close_anim)}
     private val fromBottom : Animation by lazy { AnimationUtils.loadAnimation(context,R.anim.from_bottom_anim)}
     private val toBottom : Animation by lazy { AnimationUtils.loadAnimation(context,R.anim.to_bottom_anim)}
+
+    private lateinit var saveNewsViewModel: SaveNewsViewModel
 
     private lateinit var dataBinding: FragmentNewsDetailBinding
     private var clicked : Boolean = false
@@ -40,6 +44,7 @@ class NewsDetailFragment : Fragment() {
             this.activity_FAB.hide()
             this.activity_bottom_menu.visibility = View.GONE
         }
+        saveNewsViewModel = ViewModelProviders.of(this).get(SaveNewsViewModel::class.java)
         arguments?.let {
             val article = NewsDetailFragmentArgs.fromBundle(it).article
             article.source.name?.let { thing->
@@ -66,7 +71,13 @@ class NewsDetailFragment : Fragment() {
     }
 
     private fun saveNews(article: Article) {
-
+        saveNewsViewModel.saveNewsToRoom(article)
+        share_fab.startAnimation(toBottom)
+        save_fab.startAnimation(toBottom)
+        mother_fab.startAnimation(rotateClose)
+        share_fab.visibility = View.INVISIBLE
+        save_fab.visibility = View.INVISIBLE
+        clicked = !clicked
     }
 
     private fun setVisibility(clicked : Boolean){
@@ -80,7 +91,6 @@ class NewsDetailFragment : Fragment() {
     }
 
     private fun setAnimation(clicked: Boolean){
-
         if (!clicked){
             share_fab.startAnimation(fromBottom)
             save_fab.startAnimation(fromBottom)
