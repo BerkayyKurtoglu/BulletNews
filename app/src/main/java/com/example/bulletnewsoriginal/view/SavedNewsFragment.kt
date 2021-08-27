@@ -1,5 +1,6 @@
 package com.example.bulletnewsoriginal.view
 
+import android.content.ClipData
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bulletnewsoriginal.R
+import com.example.bulletnewsoriginal.adapter.ItemTouchHelperCallBack
 import com.example.bulletnewsoriginal.adapter.SavedNewsRecyclerViewAdapter
 import com.example.bulletnewsoriginal.viewModel.SavedNewsFragmentViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,6 +21,9 @@ class SavedNewsFragment : Fragment() {
 
     private lateinit var savedNewsFragmentViewModel: SavedNewsFragmentViewModel
     private var recyclerAdapter = SavedNewsRecyclerViewAdapter(ArrayList())
+    private lateinit var itemTouchHelperCallBack : ItemTouchHelperCallBack
+    private lateinit var itemTouchHelper : ItemTouchHelper
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,7 +37,12 @@ class SavedNewsFragment : Fragment() {
         savedNewsFragmentViewModel = ViewModelProviders.of(this).get(SavedNewsFragmentViewModel::class.java)
         savedNewsFragmentViewModel.getSavedArticles()
 
+        itemTouchHelperCallBack = ItemTouchHelperCallBack(ArrayList(),recyclerAdapter,requireContext())
+        itemTouchHelper = ItemTouchHelper(itemTouchHelperCallBack)
+
         savedNews_recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        itemTouchHelper.attachToRecyclerView(savedNews_recyclerView)
+
 
         observeViewModel()
         super.onViewCreated(view, savedInstanceState)
@@ -44,6 +55,7 @@ class SavedNewsFragment : Fragment() {
             it?.let {
                 recyclerAdapter.refreshAdapter(it)
                 savedNews_recyclerView.adapter = recyclerAdapter
+                itemTouchHelperCallBack.refreshList(it)
             }
         }
 
