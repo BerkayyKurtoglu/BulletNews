@@ -18,7 +18,9 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.bulletnewsoriginal.R
 import com.example.bulletnewsoriginal.adapter.HomeFragmentMainRecyclerViewAdapter
+import com.example.bulletnewsoriginal.adapter.AdapterListener
 import com.example.bulletnewsoriginal.adapter.ViewPagerAdapterForHomeFragment
+import com.example.bulletnewsoriginal.model.Article
 import com.example.bulletnewsoriginal.util.SharedPreferenceService
 import com.example.bulletnewsoriginal.viewModel.MainFragmentViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
