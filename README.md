@@ -22,6 +22,4 @@ Dark Mode |
 ### Soon ; 
 - [x] Dark mode integration
 - [x] You will be able to share news 
-- [ ] You will be able to create your own account
-- [ ] Cload storage integration
 - [x] Save news so read them without internet connection
