@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class SearchFragmentViewModel(application: Application) : BaseViewModel(application=application) {
 
-    private val retrofitService = RetrofitService(getApplication())
+    private val retrofitService = RetrofitService()
 
     val newsLiveData = MutableLiveData<List<NewsDataClass>>()
     val progressLiveData = MutableLiveData<Boolean>()

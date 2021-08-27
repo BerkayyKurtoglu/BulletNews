@@ -18,7 +18,7 @@ import kotlinx.coroutines.*
 class MainFragmentViewModel(application: Application) : BaseViewModel(application) {
 
     private val categoryDatabaseDao = CategoryDatabase.invoke(getApplication()).categoryDao()
-    private val retrofitService = RetrofitService(getApplication())
+    private val retrofitService = RetrofitService()
     private val compositeDisposable = CompositeDisposable()
 
     val loadingStatuLiveData = MutableLiveData<Boolean>()
