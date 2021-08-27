@@ -14,6 +14,7 @@ import com.example.bulletnewsoriginal.R
 import com.example.bulletnewsoriginal.adapter.ItemTouchHelperCallBack
 import com.example.bulletnewsoriginal.adapter.SavedNewsRecyclerViewAdapter
 import com.example.bulletnewsoriginal.viewModel.SavedNewsFragmentViewModel
+import com.google.android.material.transition.MaterialFadeThrough
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_saved_news.*
 
@@ -23,6 +24,11 @@ class SavedNewsFragment : Fragment() {
     private var recyclerAdapter = SavedNewsRecyclerViewAdapter(ArrayList())
     private lateinit var itemTouchHelperCallBack : ItemTouchHelperCallBack
     private lateinit var itemTouchHelper : ItemTouchHelper
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        enterTransition = MaterialFadeThrough()
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
