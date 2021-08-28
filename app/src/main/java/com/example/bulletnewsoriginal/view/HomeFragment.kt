@@ -40,6 +40,7 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enterTransition = MaterialFadeThrough()
         exitTransition = MaterialFadeThrough()
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSplashScreen())
         super.onCreate(savedInstanceState)
     }
 
