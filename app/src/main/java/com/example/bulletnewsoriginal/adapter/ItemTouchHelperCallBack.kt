@@ -22,13 +22,16 @@ class ItemTouchHelperCallBack(
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         val savingNewsDao = SavingNewsDatabase(context).accessSavingNewsDao()
-        val swipedArticleId = list[viewHolder.adapterPosition].id
-        println(swipedArticleId)
+        list.clear()
         CoroutineScope(Dispatchers.Default).launch {
+            list.addAll(savingNewsDao.getAllSavedNews())
+            val swipedArticleId = list[viewHolder.adapterPosition].id
+            println(swipedArticleId)
             savingNewsDao.deleteCertainNews(swipedArticleId)
+            val list = savingNewsDao.getAllSavedNews()
             withContext(Dispatchers.Main){
-                adapter.notifyItemRemoved(viewHolder.adapterPosition)
-                adapter.refreshAdapter(savingNewsDao.getAllSavedNews())
+                adapter.refreshAdapter(list)
+                adapter.notifyItemRemoved(direction)
             }
         }
     }

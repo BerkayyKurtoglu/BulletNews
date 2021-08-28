@@ -28,9 +28,6 @@
         <action
             android:id="@+id/action_homeFragment_to_miniMenuFragment"
             app:destination="@id/miniMenuFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_splashScreen"
-            app:destination="@id/splashScreen" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -115,14 +112,5 @@
         <action
             android:id="@+id/action_savedNewsFragment_to_newsDetailFragment2"
             app:destination="@id/newsDetailFragment2" />
-    </fragment>
-    <fragment
-        android:id="@+id/splashScreen"
-        android:name="com.example.bulletnewsoriginal.view.SplashScreen"
-        android:label="fragment_splash_screen"
-        tools:layout="@layout/fragment_splash_screen" >
-        <action
-            android:id="@+id/action_splashScreen_to_homeFragment"
-            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

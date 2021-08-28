@@ -12,8 +12,6 @@ import com.google.android.material.transition.MaterialFadeThrough
 
 class SplashScreen : Fragment() {
 
-    private val handler = Handler()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enterTransition = MaterialFadeThrough()
@@ -29,10 +27,6 @@ class SplashScreen : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        handler.postDelayed({
-            findNavController().navigate(SplashScreenDirections.actionSplashScreenToHomeFragment())
-        },3000)
 
         super.onViewCreated(view, savedInstanceState)
     }
