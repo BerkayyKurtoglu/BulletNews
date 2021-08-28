@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bulletnewsoriginal.R
 import com.example.bulletnewsoriginal.model.NewsDataClass
@@ -20,6 +22,7 @@ class HomeFragmentChildRecyclerViewAdapter(
 )
     : RecyclerView.Adapter<HomeFragmentChildRecyclerViewAdapter.ItemHolder>() {
     class ItemHolder(val view : View) : RecyclerView.ViewHolder(view)
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.child_recycler_view_item,parent,false)

@@ -9,6 +9,7 @@ import com.example.bulletnewsoriginal.viewModel.BaseViewModel
 import kotlinx.coroutines.*
 
 class ItemTouchHelperCallBack(
+    val recyclerView: RecyclerView,
     val list : ArrayList<Article>,
     val adapter: SavedNewsRecyclerViewAdapter,
     val context: Context) : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT){
@@ -26,10 +27,9 @@ class ItemTouchHelperCallBack(
         println(swipedArticleId)
         CoroutineScope(Dispatchers.Default).launch {
             savingNewsDao.deleteCertainNews(swipedArticleId)
-            val list = savingNewsDao.getAllSavedNews()
             withContext(Dispatchers.Main){
-                adapter.refreshAdapter(list)
-                adapter.notifyItemRemoved(direction)
+                adapter.notifyItemRemoved(viewHolder.adapterPosition)
+                adapter.refreshAdapter(savingNewsDao.getAllSavedNews())
             }
         }
     }

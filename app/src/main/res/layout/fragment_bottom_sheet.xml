@@ -94,14 +94,6 @@
             android:textColor="@color/blackBrandColor"
             android:textStyle="normal" />
 
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/bottom_sheet_seventh_checkBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Politicy"
-            android:textSize="16sp"
-            android:textColor="@color/blackBrandColor"
-            android:textStyle="normal" />
 
     </LinearLayout>
 

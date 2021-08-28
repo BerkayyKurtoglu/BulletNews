@@ -69,6 +69,7 @@ class HomeFragment : Fragment() {
         mainFragmentViewModel = ViewModelProviders.of(this).get(MainFragmentViewModel::class.java)
         mainFragmentViewModel.getTotalNews(requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
 
+
         homeFragment_swipeRefreshLayout.setOnRefreshListener {
             mainFragmentViewModel.getTotalNews(requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
             homeFragment_swipeRefreshLayout.isRefreshing = false

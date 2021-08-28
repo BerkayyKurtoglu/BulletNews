@@ -143,7 +143,7 @@ class BottomSheetFragment : Fragment() {
             }
         }
 
-        bottom_sheet_seventh_checkBox.isChecked = sharedPreferenceService.controlCheckState("seventh_checkBox")!!
+        /*bottom_sheet_seventh_checkBox.isChecked = sharedPreferenceService.controlCheckState("seventh_checkBox")!!
         bottom_sheet_seventh_checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked){
                 sharedPreferenceService.editCheckState("seventh_checkBox",true)
@@ -154,7 +154,7 @@ class BottomSheetFragment : Fragment() {
                 sharedPreferenceService.editCheckState("seventh_checkBox",false)
                 mainFragmentViewModel.deleteCategory(buttonView.text.toString())
             }
-        }
+        }*/
     }
 
     private fun clickedApplyButton(){
