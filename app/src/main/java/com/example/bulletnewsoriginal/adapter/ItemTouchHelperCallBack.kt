@@ -9,7 +9,6 @@ import com.example.bulletnewsoriginal.viewModel.BaseViewModel
 import kotlinx.coroutines.*
 
 class ItemTouchHelperCallBack(
-    val recyclerView: RecyclerView,
     val list : ArrayList<Article>,
     val adapter: SavedNewsRecyclerViewAdapter,
     val context: Context) : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT){
