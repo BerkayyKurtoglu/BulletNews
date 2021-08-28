@@ -43,7 +43,7 @@ class SavedNewsFragment : Fragment() {
         savedNewsFragmentViewModel = ViewModelProviders.of(this).get(SavedNewsFragmentViewModel::class.java)
         savedNewsFragmentViewModel.getSavedArticles()
 
-        itemTouchHelperCallBack = ItemTouchHelperCallBack(savedNews_recyclerView,ArrayList(),recyclerAdapter,requireContext())
+        itemTouchHelperCallBack = ItemTouchHelperCallBack(ArrayList(),recyclerAdapter,requireContext())
         itemTouchHelper = ItemTouchHelper(itemTouchHelperCallBack)
 
         savedNews_recyclerView.layoutManager = LinearLayoutManager(requireContext())

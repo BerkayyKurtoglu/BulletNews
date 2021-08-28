@@ -7,10 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
 import com.example.bulletnewsoriginal.databinding.FragmentMiniMenuBinding
 import com.example.bulletnewsoriginal.model.Article
-import com.example.bulletnewsoriginal.util.SharedPreferenceService
 import com.example.bulletnewsoriginal.viewModel.SaveNewsViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_mini_menu.*
@@ -19,8 +17,6 @@ class MiniMenuFragment : BottomSheetDialogFragment() {
 
     private lateinit var dataBinding : FragmentMiniMenuBinding
     private lateinit var saveNewsViewModel: SaveNewsViewModel
-
-    private lateinit var sharedPreferenceService: SharedPreferenceService
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +28,6 @@ class MiniMenuFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         saveNewsViewModel = ViewModelProviders.of(this).get(SaveNewsViewModel::class.java)
-        sharedPreferenceService = SharedPreferenceService(requireContext())
         arguments?.let {
             val article = MiniMenuFragmentArgs.fromBundle(it).article
 
@@ -44,7 +39,7 @@ class MiniMenuFragment : BottomSheetDialogFragment() {
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     startActivity(intent)
                 }
-                miniMenuFragment_share_button.setOnClickListener { shareUrl(url)}
+                miniMenuFragment_share_button.setOnClickListener {shareUrl(url)}
             }
         }
         observeViewModel()

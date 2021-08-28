@@ -5,7 +5,6 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.example.bulletnewsoriginal.model.CategoryDatabaseItem
 import com.example.bulletnewsoriginal.model.NewsDataClass
 import com.example.bulletnewsoriginal.service.categoryDatabase.CategoryDatabase

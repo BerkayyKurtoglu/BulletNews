@@ -52,7 +52,6 @@ class HomeFragmentMainRecyclerViewAdapter(
         return list.size
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     fun replaceAdapterWithNewArray(newList: List<NewsDataClass>){
         list.clear()
         list.addAll(newList)
