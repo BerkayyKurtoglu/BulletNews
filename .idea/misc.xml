@@ -26,7 +26,7 @@
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout-night/fragment_profile.xml" value="0.1897644927536232" />
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout-night/view_pager_item_home_fragment.xml" value="0.1947463768115942" />
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout/activity_main.xml" value="0.2128623188405797" />
-        <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout/all_fragment_recyclerview_item.xml" value="0.19655797101449277" />
+        <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout/all_fragment_recyclerview_item.xml" value="0.152" />
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout/child_recycler_view_item.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout/fragment_all_news.xml" value="0.19655797101449277" />
         <entry key="..\:/AndroidProjects/BulletNewsOriginal/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.2128623188405797" />
@@ -55,5 +55,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.152" />
+      </ProjectState>
+    </option>
   </component>
 </project>

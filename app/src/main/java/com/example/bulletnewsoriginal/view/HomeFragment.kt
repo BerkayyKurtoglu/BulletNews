@@ -57,6 +57,7 @@ class HomeFragment : Fragment() {
         sharedPreferenceService = SharedPreferenceService(requireContext())
         controlDarkMode()
 
+
         viewPager2 = homeFragment_ViewPager2
         operateViewPager()
 

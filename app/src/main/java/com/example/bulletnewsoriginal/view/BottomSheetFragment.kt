@@ -5,6 +5,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -53,12 +54,12 @@ class BottomSheetFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         handleSystemUI()
+        sharedPreferenceService = SharedPreferenceService(requireContext())
 
         mainFragmentViewModel = ViewModelProviders.of(this).get(MainFragmentViewModel::class.java)
-        sharedPreferenceService = SharedPreferenceService(requireContext())
         handleCheckboxes()
         clickedApplyButton()
-
+        Toast.makeText(requireContext(), "Select topics that you are interested in ✌ 😎", Toast.LENGTH_LONG).show()
         super.onViewCreated(view, savedInstanceState)
     }
 

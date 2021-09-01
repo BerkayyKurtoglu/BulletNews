@@ -25,6 +25,12 @@ class SharedPreferenceService {
     }
 
 
+    fun createBooleanPreference(name : String, value : Boolean){
+        sharedPreferences?.edit(commit = true){
+            putBoolean(name,value)
+        }
+    }
+
     fun editCheckState(name : String,value : Boolean){
         sharedPreferences?.edit(commit = true){
             putBoolean(name,value).apply()
