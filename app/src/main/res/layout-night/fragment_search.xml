@@ -29,11 +29,33 @@
             android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+            <EditText
+                android:id="@+id/searchFragment_searchBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Search  ..."
+                android:layout_marginTop="25dp"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="25dp"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/subtitleTextBrandColor"
+                android:layout_marginHorizontal="25dp"
+                android:background="@drawable/search_box_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/searchFragment_searchRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"/>
+
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/searchFragment_tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 app:tabContentStart="25dp"
                 app:tabIndicatorAnimationMode="elastic"
                 app:tabMode="scrollable"

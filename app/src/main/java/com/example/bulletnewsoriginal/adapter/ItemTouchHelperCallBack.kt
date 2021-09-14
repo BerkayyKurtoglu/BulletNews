@@ -25,13 +25,12 @@ class ItemTouchHelperCallBack(
         list.clear()
         CoroutineScope(Dispatchers.Default).launch {
             list.addAll(savingNewsDao.getAllSavedNews())
-            val swipedArticleId = list[viewHolder.adapterPosition].id
-            println(swipedArticleId)
+            val swipedArticleId = list[viewHolder.layoutPosition].id
             savingNewsDao.deleteCertainNews(swipedArticleId)
-            val list = savingNewsDao.getAllSavedNews()
+            val newList = savingNewsDao.getAllSavedNews()
             withContext(Dispatchers.Main){
-                adapter.refreshAdapter(list)
-                adapter.notifyItemRemoved(direction)
+                adapter.notifyItemRemoved(viewHolder.layoutPosition)
+                adapter.refreshAdapter(newList)
             }
         }
     }

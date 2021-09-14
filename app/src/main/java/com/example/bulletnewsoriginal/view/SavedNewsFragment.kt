@@ -1,6 +1,5 @@
 package com.example.bulletnewsoriginal.view
 
-import android.content.ClipData
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.bulletnewsoriginal.R
 import com.example.bulletnewsoriginal.adapter.ItemTouchHelperCallBack
 import com.example.bulletnewsoriginal.adapter.SavedNewsRecyclerViewAdapter
@@ -22,7 +22,6 @@ class SavedNewsFragment : Fragment() {
 
     private lateinit var savedNewsFragmentViewModel: SavedNewsFragmentViewModel
     private var recyclerAdapter = SavedNewsRecyclerViewAdapter(ArrayList())
-    private lateinit var itemTouchHelperCallBack : ItemTouchHelperCallBack
     private lateinit var itemTouchHelper : ItemTouchHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,9 +42,9 @@ class SavedNewsFragment : Fragment() {
         savedNewsFragmentViewModel = ViewModelProviders.of(this).get(SavedNewsFragmentViewModel::class.java)
         savedNewsFragmentViewModel.getSavedArticles()
 
-        itemTouchHelperCallBack = ItemTouchHelperCallBack(ArrayList(),recyclerAdapter,requireContext())
-        itemTouchHelper = ItemTouchHelper(itemTouchHelperCallBack)
+        //itemTouchHelperCallBack = ItemTouchHelperCallBack(ArrayList(),recyclerAdapter,requireContext())
 
+        itemTouchHelper = ItemTouchHelper(makeItemTouchHelper())
         savedNews_recyclerView.layoutManager = LinearLayoutManager(requireContext())
         itemTouchHelper.attachToRecyclerView(savedNews_recyclerView)
 
@@ -54,6 +53,23 @@ class SavedNewsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
+    private fun makeItemTouchHelper() = object : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.layoutPosition
+                val article = recyclerAdapter.getAdapterList[position].id
+                savedNewsFragmentViewModel.deleteSavedNews(article)
+                recyclerAdapter.notifyItemRemoved(position)
+            }
+        }
+
 
     private fun observeViewModel(){
 
@@ -61,7 +77,6 @@ class SavedNewsFragment : Fragment() {
             it?.let {
                 recyclerAdapter.refreshAdapter(it)
                 savedNews_recyclerView.adapter = recyclerAdapter
-                itemTouchHelperCallBack.refreshList(it)
             }
         }
 

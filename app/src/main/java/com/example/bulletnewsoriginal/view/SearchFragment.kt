@@ -3,6 +3,8 @@ package com.example.bulletnewsoriginal.view
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.transition.ChangeBounds
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,19 +12,29 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.TransitionManager
 import com.example.bulletnewsoriginal.R
 import com.example.bulletnewsoriginal.adapter.SearchFragmentChildRecyclerViewAdapter
+import com.example.bulletnewsoriginal.adapter.SearchFragmentSearchAdapter
 import com.example.bulletnewsoriginal.adapter.ViewPagerAdapterForSearchFragment
 import com.example.bulletnewsoriginal.model.NewsDataClass
 import com.example.bulletnewsoriginal.util.SharedPreferenceService
 import com.example.bulletnewsoriginal.viewModel.SearchFragmentViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.android.material.transition.MaterialSharedAxis
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.view_pager_item_search_fragment.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SearchFragment : Fragment() {
@@ -30,7 +42,7 @@ class SearchFragment : Fragment() {
     private lateinit var searchFragmentViewModel: SearchFragmentViewModel
     private lateinit var viewPagerAdapterForSearchFragment : ViewPagerAdapterForSearchFragment
     private lateinit var sharedPreferenceService: SharedPreferenceService
-
+    private lateinit var searchFragmentSearchAdapter: SearchFragmentSearchAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,6 +60,35 @@ class SearchFragment : Fragment() {
         controlDarkMode()
 
         searchFragmentViewModel.getNewsForSearchFragment(requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
+        searchFragmentSearchAdapter = SearchFragmentSearchAdapter()
+
+        searchFragment_searchRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        searchFragment_searchRecyclerView.adapter = searchFragmentSearchAdapter
+
+        var job : Job? = null
+
+        searchFragment_searchBox.addTextChangedListener {
+            val sharedAxis = MaterialSharedAxis(MaterialSharedAxis.Y, true)
+            TransitionManager.beginDelayedTransition(view.rootView as ViewGroup, sharedAxis)
+            job?.cancel()
+            it?.let {
+                if (it.toString().isNotEmpty() && it.toString().length >= 3){
+                    searchFragment_tabLayout.visibility = View.GONE
+                    searchFragment_viewPager_recyclerView.visibility = View.GONE
+                    searchFragment_searchRecyclerView.visibility = View.VISIBLE
+                }else{
+                    searchFragment_tabLayout.visibility = View.VISIBLE
+                    searchFragment_viewPager_recyclerView.visibility = View.VISIBLE
+                    searchFragment_searchRecyclerView.visibility = View.GONE
+                }
+            }
+            job = lifecycleScope.launch {
+                delay(1000)
+                it?.let {
+                    searchFragmentViewModel.searchNews(it.toString())
+                }
+            }
+        }
 
         observeViewModel()
         super.onViewCreated(view, savedInstanceState)
@@ -76,6 +117,10 @@ class SearchFragment : Fragment() {
                 searchFragment_totalScreen.visibility = View.VISIBLE
                 searchFragment_progressBar.visibility = View.GONE
             }
+        }
+
+        searchFragmentViewModel.searchNewsData.observe(viewLifecycleOwner){
+            searchFragmentSearchAdapter.searchNews = it.articles
         }
 
     }

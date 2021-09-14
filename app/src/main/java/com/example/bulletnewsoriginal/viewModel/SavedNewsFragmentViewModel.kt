@@ -12,6 +12,12 @@ class SavedNewsFragmentViewModel(application: Application) : BaseViewModel(appli
     val articlesLiveData = MutableLiveData<List<Article>>()
     val progressLiveData = MutableLiveData<Boolean>()
 
+    fun deleteSavedNews(id : Int){
+        launch {
+            dao.deleteCertainNews(id)
+        }
+    }
+
     fun getSavedArticles(){
         progressLiveData.value = true
         launch {

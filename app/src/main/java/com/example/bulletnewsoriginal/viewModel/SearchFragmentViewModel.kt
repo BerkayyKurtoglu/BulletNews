@@ -4,6 +4,7 @@ import android.app.Application
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.bulletnewsoriginal.model.NewsDataClass
 import com.example.bulletnewsoriginal.service.api.RetrofitService
@@ -18,6 +19,20 @@ class SearchFragmentViewModel(application: Application) : BaseViewModel(applicat
 
     private val searchNewsCategories = ArrayList<String>()
     private val searchNewsResponseList = ArrayList<NewsDataClass>()
+
+    private val _searchNewsData = MutableLiveData<NewsDataClass>()
+    val searchNewsData : LiveData<NewsDataClass> = _searchNewsData
+
+    fun searchNews(q : String?){
+        launch {
+            val response = retrofitService.getSingleForEverything(q ?: "")
+            if (response.isSuccessful){
+                response.body()?.let {
+                    _searchNewsData.value = it
+                }
+            }
+        }
+    }
 
     fun getNewsForSearchFragment(connectivityManager : ConnectivityManager){
         progressLiveData.value = true

@@ -14,6 +14,10 @@ import com.example.bulletnewsoriginal.view.SavedNewsFragmentDirections
 class SavedNewsRecyclerViewAdapter(
     private val articleList : ArrayList<Article>
     ): RecyclerView.Adapter<SavedNewsRecyclerViewAdapter.ViewHolder>() {
+
+    val getAdapterList : List<Article>
+        get() = articleList
+
     class ViewHolder(val binding : SavedNewRecyclerItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.example.bulletnewsoriginal.databinding.FragmentMiniMenuBinding
 import com.example.bulletnewsoriginal.model.Article
 import com.example.bulletnewsoriginal.viewModel.SaveNewsViewModel
@@ -74,5 +76,4 @@ class MiniMenuFragment : BottomSheetDialogFragment() {
             }
         }
     }
-
 }
