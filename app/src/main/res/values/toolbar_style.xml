@@ -5,4 +5,9 @@
         <item name="android:textSize">22sp</item>
     </style>
 
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- Customize color of Toolbar -->
+        <item name="colorControlNormal">@color/blackBrandColor</item>
+    </style>
+
 </resources>
