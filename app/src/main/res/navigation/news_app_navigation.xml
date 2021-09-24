@@ -10,7 +10,12 @@
         android:name="com.example.bulletnewsoriginal.view.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
-
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
         <action
             android:id="@+id/action_homeFragment_to_bottomSheetFragment2"
             app:destination="@id/bottomSheetFragment2" />
@@ -29,7 +34,12 @@
         android:name="com.example.bulletnewsoriginal.view.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
-
+        <action
+            android:id="@+id/action_searchFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
         <action
             android:id="@+id/action_searchFragment_to_newsDetailFragment2"
             app:destination="@id/newsDetailFragment2" />
@@ -39,6 +49,12 @@
         android:name="com.example.bulletnewsoriginal.view.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
         <action
             android:id="@+id/action_profileFragment_to_savedNewsFragment"
             app:destination="@id/savedNewsFragment" />

@@ -30,7 +30,6 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/white"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
-                android:theme="@style/ToolbarTheme"
                 app:title="News From World"
                 app:titleTextAppearance="@style/customToolbarStyle"
                 app:titleTextColor="@color/blackBrandColor" />
