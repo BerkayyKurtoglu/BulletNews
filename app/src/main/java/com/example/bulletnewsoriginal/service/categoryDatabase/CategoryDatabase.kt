@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.bulletnewsoriginal.model.CategoryDatabaseItem
 
-@Database(entities = [CategoryDatabaseItem::class],version = 1)
+@Database(entities = [CategoryDatabaseItem::class],version = 1,exportSchema = false)
 abstract class CategoryDatabase : RoomDatabase(){
 
     abstract fun categoryDao() : CategoryDao
