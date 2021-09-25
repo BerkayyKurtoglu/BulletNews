@@ -53,12 +53,6 @@
                 android:layout_marginTop="25dp"
                 android:visibility="gone"/>
 
-            <androidx.compose.ui.platform.AndroidComposeView
-                android:id="@+id/search_compose_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone"/>
-
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/searchFragment_tabLayout"
                 android:layout_width="match_parent"

@@ -29,14 +29,14 @@ class MainFragmentViewModel(application: Application) : BaseViewModel(applicatio
     private val subNewsList = ArrayList<NewsDataClass>()
 
     fun getTotalNews(connectivityManager: ConnectivityManager){
-        /*loadingStatuLiveData.value = true
+        loadingStatuLiveData.value = true
         if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)?.state == NetworkInfo.State.CONNECTED ||
             connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)?.state == NetworkInfo.State.CONNECTED){
             getTopHeadlines()
             getSubNews()
         }else{
             Toast.makeText(getApplication(), "Upps 🤔 looks like, you are not connected", Toast.LENGTH_LONG).show()
-        }*/
+        }
     }
 
     private fun getSubNews(){
