@@ -15,6 +15,8 @@ Dark Mode |
 
 ### This app uses :point_down:
 - MVVM (model-view-view model) software structure
+- **Paging 3** Library
+- Hilt Dependecy Injection
 - Retrofit
 - RxJava2
 - Kotlin Coroutines - job
