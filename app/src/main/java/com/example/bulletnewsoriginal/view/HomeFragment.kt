@@ -7,17 +7,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
+import androidx.paging.map
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.bulletnewsoriginal.R
 import com.example.bulletnewsoriginal.adapter.HomeFragmentMainRecyclerViewAdapter
+import com.example.bulletnewsoriginal.adapter.TopHeadlinesPagingAdapter
 import com.example.bulletnewsoriginal.adapter.ViewPagerAdapterForHomeFragment
 import com.example.bulletnewsoriginal.util.SharedPreferenceService
 import com.example.bulletnewsoriginal.viewModel.MainFragmentViewModel
@@ -25,6 +31,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.transition.MaterialFadeThrough
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import kotlin.math.abs
 
 class HomeFragment : Fragment() {
@@ -35,6 +43,8 @@ class HomeFragment : Fragment() {
     private lateinit var mainRecyclerViewAdapter: HomeFragmentMainRecyclerViewAdapter
     private lateinit var sharedPreferenceService: SharedPreferenceService
     private lateinit var mainFragmentViewModel : MainFragmentViewModel
+
+    private lateinit var viewPagerPagingAdapter: TopHeadlinesPagingAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +71,9 @@ class HomeFragment : Fragment() {
         viewPager2 = homeFragment_ViewPager2
         operateViewPager()
 
+        viewPagerPagingAdapter = TopHeadlinesPagingAdapter()
+        viewPager2.adapter = viewPagerPagingAdapter
+
         floatingActionButton = (activity as AppCompatActivity).activity_FAB
         floatingActionButton.setOnClickListener {FABListener(it)}
 
@@ -71,7 +84,8 @@ class HomeFragment : Fragment() {
         mainFragmentViewModel.getTotalNews(requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
 
         homeFragment_swipeRefreshLayout.setOnRefreshListener {
-            mainFragmentViewModel.getTotalNews(requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
+            //mainFragmentViewModel.getTotalNews(requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
+            viewPagerPagingAdapter.refresh()
             homeFragment_swipeRefreshLayout.isRefreshing = false
         }
 
@@ -91,12 +105,29 @@ class HomeFragment : Fragment() {
 
     private fun observeViewModel(){
 
-        mainFragmentViewModel.topHeadLinesLiveData.observe(viewLifecycleOwner){
-            it?.let {
-                viewPagerAdapter = ViewPagerAdapterForHomeFragment(requireContext(),homeFragment_topHeadlines_seeAllText,it)
-                viewPager2.adapter = viewPagerAdapter
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewPagerPagingAdapter.loadStateFlow.collectLatest {
+                homeFragment_progressBar.isVisible = it.refresh is LoadState.Loading
+                if (it.refresh is LoadState.Error) Toast.makeText(
+                    requireContext(),
+                    "Unxepcted Problem occured",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
+
+        mainFragmentViewModel.topHeadlines.observe(viewLifecycleOwner){
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewPagerPagingAdapter.submitData(it)
+            }
+        }
+
+        /*mainFragmentViewModel.topHeadLinesLiveData.observe(viewLifecycleOwner){
+            it?.let {
+                /*viewPagerAdapter = ViewPagerAdapterForHomeFragment(requireContext(),homeFragment_topHeadlines_seeAllText,it)
+                viewPager2.adapter = viewPagerAdapter*/
+            }
+        }*/
 
         mainFragmentViewModel.loadingStatuLiveData.observe(viewLifecycleOwner){
             it?.let {

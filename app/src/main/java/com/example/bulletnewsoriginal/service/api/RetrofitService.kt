@@ -3,6 +3,7 @@ package com.example.bulletnewsoriginal.service.api
 import com.example.bulletnewsoriginal.model.NewsDataClass
 import io.reactivex.Single
 import okhttp3.OkHttpClient
+import retrofit2.HttpException
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -25,6 +26,10 @@ class RetrofitService {
         client.writeTimeout(5, TimeUnit.MINUTES)
         client.readTimeout(5,TimeUnit.MINUTES)
         return retrofit.getTopHeadlines()
+    }
+
+    suspend fun getResponseForTopHeadlines(page : Int) :Response<NewsDataClass> {
+        return retrofit.getResponseTopHeadlines(page = page)
     }
 
     suspend fun getSingleForEverything(topic : String):Response<NewsDataClass>{

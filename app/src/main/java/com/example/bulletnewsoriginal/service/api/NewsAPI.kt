@@ -15,4 +15,9 @@ interface NewsAPI {
     @GET("everything?language=en&apiKey=${KEY}")
     suspend fun getEverythingWithTopic(@Query("q") topic : String) : Response<NewsDataClass>
 
+    @GET("top-headlines?country=us&apiKey=${KEY}")
+    suspend fun getResponseTopHeadlines(
+        @Query("page") page : Int
+    ) : Response<NewsDataClass>
+
 }

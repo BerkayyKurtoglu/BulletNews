@@ -5,8 +5,14 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
+import androidx.paging.liveData
 import com.example.bulletnewsoriginal.model.CategoryDatabaseItem
 import com.example.bulletnewsoriginal.model.NewsDataClass
+import com.example.bulletnewsoriginal.pagingsources.TopHeadlinesPagingSource
 import com.example.bulletnewsoriginal.service.categoryDatabase.CategoryDatabase
 import com.example.bulletnewsoriginal.service.api.RetrofitService
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -24,6 +30,14 @@ class MainFragmentViewModel(application: Application) : BaseViewModel(applicatio
     val loadingStatuLiveData = MutableLiveData<Boolean>()
     val errorStatuLiveData = MutableLiveData<Boolean>()
     val topHeadLinesLiveData = MutableLiveData<NewsDataClass>()
+
+    val topHeadlines = Pager(
+        config = PagingConfig(
+            pageSize = 5
+        )
+    ){
+        TopHeadlinesPagingSource(retrofitService)
+    }.liveData
 
     val subNewsLiveData = MutableLiveData<ArrayList<NewsDataClass>>()
     private val subNewsList = ArrayList<NewsDataClass>()
