@@ -34,6 +34,13 @@ class TopHeadlinesPagingAdapter(
                 )
             } ?: Toast.makeText(view.context,"Problem occured",Toast.LENGTH_LONG).show()
         }
+
+        holder.view.view_pager_popUp.setOnClickListener { view->
+            item?.let {
+                Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToMiniMenuFragment(it))
+            }
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
