@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -30,6 +32,12 @@ class NewsDetailFragment : Fragment() {
 
     private lateinit var dataBinding: FragmentNewsDetailBinding
     private var clicked : Boolean = false
+
+    private var backPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            findNavController().popBackStack()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,6 +75,7 @@ class NewsDetailFragment : Fragment() {
             clicked = !clicked
         }
 
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,backPressedCallback)
         super.onViewCreated(view, savedInstanceState)
     }
 

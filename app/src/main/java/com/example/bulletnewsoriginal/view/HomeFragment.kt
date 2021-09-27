@@ -23,8 +23,10 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.bulletnewsoriginal.R
 import com.example.bulletnewsoriginal.adapter.HomeFragmentMainRecyclerViewAdapter
+import com.example.bulletnewsoriginal.adapter.OnClickedPagingAdapter
 import com.example.bulletnewsoriginal.adapter.TopHeadlinesPagingAdapter
 import com.example.bulletnewsoriginal.adapter.ViewPagerAdapterForHomeFragment
+import com.example.bulletnewsoriginal.model.Article
 import com.example.bulletnewsoriginal.util.SharedPreferenceService
 import com.example.bulletnewsoriginal.viewModel.MainFragmentViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -105,6 +107,12 @@ class HomeFragment : Fragment() {
 
     private fun observeViewModel(){
 
+        mainFragmentViewModel.topHeadlines.observe(viewLifecycleOwner){
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewPagerPagingAdapter.submitData(it)
+            }
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewPagerPagingAdapter.loadStateFlow.collectLatest {
                 homeFragment_progressBar.isVisible = it.refresh is LoadState.Loading
@@ -113,12 +121,6 @@ class HomeFragment : Fragment() {
                     "Unxepcted Problem occured",
                     Toast.LENGTH_LONG
                 ).show()
-            }
-        }
-
-        mainFragmentViewModel.topHeadlines.observe(viewLifecycleOwner){
-            viewLifecycleOwner.lifecycleScope.launch {
-                viewPagerPagingAdapter.submitData(it)
             }
         }
 

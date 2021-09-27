@@ -31,13 +31,15 @@ class MainFragmentViewModel(application: Application) : BaseViewModel(applicatio
     val errorStatuLiveData = MutableLiveData<Boolean>()
     val topHeadLinesLiveData = MutableLiveData<NewsDataClass>()
 
+    val job : CoroutineScope = viewModelScope
+
     val topHeadlines = Pager(
         config = PagingConfig(
-            pageSize = 5
+            pageSize = 10
         )
     ){
         TopHeadlinesPagingSource(retrofitService)
-    }.liveData
+    }.liveData.cachedIn(job)
 
     val subNewsLiveData = MutableLiveData<ArrayList<NewsDataClass>>()
     private val subNewsList = ArrayList<NewsDataClass>()
@@ -106,6 +108,7 @@ class MainFragmentViewModel(application: Application) : BaseViewModel(applicatio
 
     override fun onCleared() {
         compositeDisposable.clear()
+        job.cancel()
         super.onCleared()
     }
 

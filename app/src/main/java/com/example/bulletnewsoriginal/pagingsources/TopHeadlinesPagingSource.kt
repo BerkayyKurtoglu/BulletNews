@@ -16,13 +16,16 @@ class TopHeadlinesPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
          try {
             val pageNumber = params.key ?: 1
-            val response = retrofitService.getResponseForTopHeadlines(pageNumber)
+            val response = retrofitService.getResponseForTopHeadlines(pageNumber,params.loadSize)
+             println("Source Working")
+             println(params.key)
+             println(params.loadSize)
             val resultNumber = response.body()?.totalResults
             val maxNumber = resultNumber?.div(20)
             return LoadResult.Page(
                 data = response.body()?.articles ?: listOf(),
                 prevKey = null,
-                nextKey = pageNumber+1
+                nextKey = if (response.body()?.articles == null) null else pageNumber+1
                 //if (pageNumber+1 > maxNumber!!) null else pageNumber+1
             )
 
@@ -39,6 +42,4 @@ class TopHeadlinesPagingSource(
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
     }
-
-
 }

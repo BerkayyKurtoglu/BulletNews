@@ -28,8 +28,8 @@ class RetrofitService {
         return retrofit.getTopHeadlines()
     }
 
-    suspend fun getResponseForTopHeadlines(page : Int) :Response<NewsDataClass> {
-        return retrofit.getResponseTopHeadlines(page = page)
+    suspend fun getResponseForTopHeadlines(page : Int, pageSize : Int) :Response<NewsDataClass> {
+        return retrofit.getResponseTopHeadlines(page = page,pageSize)
     }
 
     suspend fun getSingleForEverything(topic : String):Response<NewsDataClass>{
