@@ -23,7 +23,6 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.bulletnewsoriginal.R
 import com.example.bulletnewsoriginal.adapter.HomeFragmentMainRecyclerViewAdapter
-import com.example.bulletnewsoriginal.adapter.OnClickedPagingAdapter
 import com.example.bulletnewsoriginal.adapter.TopHeadlinesPagingAdapter
 import com.example.bulletnewsoriginal.adapter.ViewPagerAdapterForHomeFragment
 import com.example.bulletnewsoriginal.model.Article

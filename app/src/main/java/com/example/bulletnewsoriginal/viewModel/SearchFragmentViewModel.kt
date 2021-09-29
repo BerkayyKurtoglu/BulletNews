@@ -6,7 +6,12 @@ import android.net.NetworkInfo
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
 import com.example.bulletnewsoriginal.model.NewsDataClass
+import com.example.bulletnewsoriginal.pagingsources.SearchPagingSource
 import com.example.bulletnewsoriginal.service.api.RetrofitService
 import kotlinx.coroutines.launch
 
@@ -33,6 +38,9 @@ class SearchFragmentViewModel(application: Application) : BaseViewModel(applicat
             }
         }
     }
+
+    fun searchPagedNews(q : String) = Pager(config = PagingConfig(pageSize = 10)){
+        SearchPagingSource(retrofitService,q) }.flow.cachedIn(viewModelScope)
 
     fun getNewsForSearchFragment(connectivityManager : ConnectivityManager){
         progressLiveData.value = true

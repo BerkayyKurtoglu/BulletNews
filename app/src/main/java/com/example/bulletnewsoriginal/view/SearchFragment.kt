@@ -12,13 +12,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionManager
 import com.example.bulletnewsoriginal.R
 import com.example.bulletnewsoriginal.adapter.SearchFragmentChildRecyclerViewAdapter
+import com.example.bulletnewsoriginal.adapter.SearchFragmentPagedAdapter
 import com.example.bulletnewsoriginal.adapter.SearchFragmentSearchAdapter
 import com.example.bulletnewsoriginal.adapter.ViewPagerAdapterForSearchFragment
 import com.example.bulletnewsoriginal.model.NewsDataClass
@@ -34,6 +37,7 @@ import kotlinx.android.synthetic.main.view_pager_item_search_fragment.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -43,6 +47,7 @@ class SearchFragment : Fragment() {
     private lateinit var viewPagerAdapterForSearchFragment : ViewPagerAdapterForSearchFragment
     private lateinit var sharedPreferenceService: SharedPreferenceService
     private lateinit var searchFragmentSearchAdapter: SearchFragmentSearchAdapter
+    private lateinit var searchFragmentPagedAdapter: SearchFragmentPagedAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -62,8 +67,9 @@ class SearchFragment : Fragment() {
         searchFragmentViewModel.getNewsForSearchFragment(requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
         searchFragmentSearchAdapter = SearchFragmentSearchAdapter()
 
+        searchFragmentPagedAdapter = SearchFragmentPagedAdapter()
         searchFragment_searchRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        searchFragment_searchRecyclerView.adapter = searchFragmentSearchAdapter
+        searchFragment_searchRecyclerView.adapter = searchFragmentPagedAdapter
 
         var job : Job? = null
 
@@ -85,7 +91,11 @@ class SearchFragment : Fragment() {
             job = lifecycleScope.launch {
                 delay(1000)
                 it?.let {
-                    searchFragmentViewModel.searchNews(it.toString())
+                    //searchFragmentViewModel.searchNews(it.toString())
+                    val pager = searchFragmentViewModel.searchPagedNews(it.toString())
+                    pager.collectLatest {
+                        searchFragmentPagedAdapter.submitData(it)
+                    }
                 }
             }
         }
@@ -103,6 +113,13 @@ class SearchFragment : Fragment() {
     }
 
     private fun observeViewModel(){
+
+        lifecycleScope.launch {
+            searchFragmentPagedAdapter.loadStateFlow.collectLatest {loadState->
+                searchFragment_progressBar.isVisible = loadState.refresh is LoadState.Loading
+            }
+        }
+
         searchFragmentViewModel.newsLiveData.observe(viewLifecycleOwner){
             it?.let {
                 viewPagerAdapterForSearchFragment.replaceAdapter(it)

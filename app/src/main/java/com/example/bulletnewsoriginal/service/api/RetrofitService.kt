@@ -39,5 +39,12 @@ class RetrofitService {
         return retrofit.getEverythingWithTopic(topic = topic)
     }
 
+    suspend fun getEverythingForSearchPaging(topic: String,page : Int, pageSize : Int) :Response<NewsDataClass> {
+        val client = OkHttpClient().newBuilder()
+        client.writeTimeout(5, TimeUnit.MINUTES)
+        client.readTimeout(5,TimeUnit.MINUTES)
+        return retrofit.getEverythingWithTopicPaging(topic,page,pageSize)
+    }
+
 
 }

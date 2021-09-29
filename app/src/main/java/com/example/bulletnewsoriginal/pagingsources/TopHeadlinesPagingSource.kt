@@ -17,9 +17,6 @@ class TopHeadlinesPagingSource(
          try {
             val pageNumber = params.key ?: 1
             val response = retrofitService.getResponseForTopHeadlines(pageNumber,params.loadSize)
-             println("Source Working")
-             println(params.key)
-             println(params.loadSize)
             val resultNumber = response.body()?.totalResults
             val maxNumber = resultNumber?.div(20)
             return LoadResult.Page(

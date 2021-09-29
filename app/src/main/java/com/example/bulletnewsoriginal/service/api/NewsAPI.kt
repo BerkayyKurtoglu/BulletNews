@@ -14,10 +14,19 @@ interface NewsAPI {
     fun getTopHeadlines() : Single<NewsDataClass>
 
     @GET("everything?language=en&apiKey=${KEY_1}")
-    suspend fun getEverythingWithTopic(@Query("q") topic : String) : Response<NewsDataClass>
+    suspend fun getEverythingWithTopic(
+        @Query("q") topic : String
+    ) : Response<NewsDataClass>
 
     @GET("top-headlines?country=us&apiKey=${KEY_2}")
     suspend fun getResponseTopHeadlines(
+        @Query("page") page : Int,
+        @Query("pageSize") pageSize : Int,
+    ) : Response<NewsDataClass>
+
+    @GET("everything?language=en&apiKey=${KEY_1}")
+    suspend fun getEverythingWithTopicPaging(
+        @Query("q") topic : String,
         @Query("page") page : Int,
         @Query("pageSize") pageSize : Int,
     ) : Response<NewsDataClass>
