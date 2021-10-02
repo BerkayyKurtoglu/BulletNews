@@ -15,6 +15,7 @@ Dark Mode |
 
 ### This app uses :point_down:
 - MVVM (model-view-view model) software structure
+- Working on Compose migration
 - **Paging 3** Library
 - Hilt Dependecy Injection
 - Retrofit
