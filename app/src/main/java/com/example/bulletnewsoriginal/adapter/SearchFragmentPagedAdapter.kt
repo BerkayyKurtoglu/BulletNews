@@ -20,7 +20,6 @@ class SearchFragmentPagedAdapter(
 ) : PagingDataAdapter<Article, SearchFragmentPagedAdapter.ViewHolder>(DiffUtil) {
 
     class ViewHolder(val view : View) : RecyclerView.ViewHolder(view)
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val article = getItem(position)
         holder.view.searchFragment_viewPager_image.uploadImageFromUrl(article?.urlToImage ?: "",

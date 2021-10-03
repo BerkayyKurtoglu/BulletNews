@@ -18,6 +18,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.paging.map
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
@@ -73,6 +74,7 @@ class HomeFragment : Fragment() {
         operateViewPager()
 
         viewPagerPagingAdapter = TopHeadlinesPagingAdapter()
+        viewPagerPagingAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         viewPager2.adapter = viewPagerPagingAdapter
 
         floatingActionButton = (activity as AppCompatActivity).activity_FAB

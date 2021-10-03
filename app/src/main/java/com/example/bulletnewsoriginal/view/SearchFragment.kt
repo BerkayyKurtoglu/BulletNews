@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionManager
 import com.example.bulletnewsoriginal.R
 import com.example.bulletnewsoriginal.adapter.SearchFragmentChildRecyclerViewAdapter
@@ -68,6 +69,7 @@ class SearchFragment : Fragment() {
         searchFragmentSearchAdapter = SearchFragmentSearchAdapter()
 
         searchFragmentPagedAdapter = SearchFragmentPagedAdapter()
+        searchFragmentPagedAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         searchFragment_searchRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         searchFragment_searchRecyclerView.adapter = searchFragmentPagedAdapter
 
