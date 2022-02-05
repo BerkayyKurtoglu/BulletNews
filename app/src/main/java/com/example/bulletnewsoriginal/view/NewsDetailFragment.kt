@@ -89,6 +89,9 @@ class NewsDetailFragment : Fragment() {
         clicked = !clicked
     }
 
+    /**
+     * Adjust the visibility according to the value of clicked
+     * @param clicked current value*/
     private fun setVisibility(clicked : Boolean){
         if (!clicked){
             share_fab.visibility = View.VISIBLE

@@ -16,7 +16,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import androidx.paging.map
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -26,7 +25,6 @@ import com.example.bulletnewsoriginal.R
 import com.example.bulletnewsoriginal.adapter.HomeFragmentMainRecyclerViewAdapter
 import com.example.bulletnewsoriginal.adapter.TopHeadlinesPagingAdapter
 import com.example.bulletnewsoriginal.adapter.ViewPagerAdapterForHomeFragment
-import com.example.bulletnewsoriginal.model.Article
 import com.example.bulletnewsoriginal.util.SharedPreferenceService
 import com.example.bulletnewsoriginal.viewModel.MainFragmentViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -50,8 +48,8 @@ class HomeFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enterTransition = MaterialFadeThrough()
-        exitTransition = MaterialFadeThrough()
+        /*enterTransition = MaterialFadeThrough()
+        exitTransition = MaterialFadeThrough()*/
         super.onCreate(savedInstanceState)
     }
 
@@ -132,7 +130,7 @@ class HomeFragment : Fragment() {
             }
         }*/
 
-        mainFragmentViewModel.loadingStatuLiveData.observe(viewLifecycleOwner){
+        mainFragmentViewModel.loadingStatus.observe(viewLifecycleOwner){
             it?.let {
                 if (it){
                     homeFragment_progressBar.visibility = View.VISIBLE
@@ -143,7 +141,7 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-        mainFragmentViewModel.errorStatuLiveData.observe(viewLifecycleOwner){
+        mainFragmentViewModel.errorStatus.observe(viewLifecycleOwner){
 
             it?.let {
                 if (it){

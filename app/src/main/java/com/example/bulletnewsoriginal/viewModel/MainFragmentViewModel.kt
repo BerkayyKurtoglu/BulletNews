@@ -4,6 +4,7 @@ import android.app.Application
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
@@ -27,8 +28,14 @@ class MainFragmentViewModel(application: Application) : BaseViewModel(applicatio
     private val retrofitService = RetrofitService()
     private val compositeDisposable = CompositeDisposable()
 
-    val loadingStatuLiveData = MutableLiveData<Boolean>()
-    val errorStatuLiveData = MutableLiveData<Boolean>()
+    private val loadingStatusLiveData = MutableLiveData<Boolean>()
+    val loadingStatus : LiveData<Boolean>
+        get() = loadingStatusLiveData
+
+    val errorStatusLiveData = MutableLiveData<Boolean>()
+    val errorStatus : LiveData<Boolean>
+        get() = loadingStatusLiveData
+
     val topHeadLinesLiveData = MutableLiveData<NewsDataClass>()
 
     val job : CoroutineScope = viewModelScope
@@ -45,7 +52,7 @@ class MainFragmentViewModel(application: Application) : BaseViewModel(applicatio
     private val subNewsList = ArrayList<NewsDataClass>()
 
     fun getTotalNews(connectivityManager: ConnectivityManager){
-        loadingStatuLiveData.value = true
+        loadingStatusLiveData.value = true
         if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)?.state == NetworkInfo.State.CONNECTED ||
             connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)?.state == NetworkInfo.State.CONNECTED){
             getTopHeadlines()
@@ -61,7 +68,7 @@ class MainFragmentViewModel(application: Application) : BaseViewModel(applicatio
         launch {
             if (categoryDatabaseDao.getAllCategories().isEmpty()){
                 println("There is no data")
-                loadingStatuLiveData.postValue(false)
+                loadingStatusLiveData.postValue(false)
             }else{
                 categoryDatabaseDao.getAllCategories().forEach {
                     val category = it.category
@@ -71,10 +78,16 @@ class MainFragmentViewModel(application: Application) : BaseViewModel(applicatio
                         response.body()?.let {
                             it.category = category
                             subNewsList.add(it)
+                        } ?: run {
+                            errorStatusLiveData.postValue(true)
+                            loadingStatusLiveData.postValue(false)
                         }
+                    }else{
+                        errorStatusLiveData.postValue(true)
+                        loadingStatusLiveData.postValue(false)
                     }
                 }
-                loadingStatuLiveData.postValue(false)
+                loadingStatusLiveData.postValue(false)
                 subNewsLiveData.value = subNewsList
             }
         }

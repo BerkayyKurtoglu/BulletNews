@@ -19,8 +19,8 @@ class ProfileFragment : Fragment() {
     private lateinit var sharedPreferenceService: SharedPreferenceService
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enterTransition = MaterialFadeThrough()
-        exitTransition = MaterialFadeThrough()
+        /*enterTransition = MaterialFadeThrough()
+        exitTransition = MaterialFadeThrough()*/
         super.onCreate(savedInstanceState)
     }
 

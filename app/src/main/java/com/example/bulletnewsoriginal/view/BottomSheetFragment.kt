@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
 import com.example.bulletnewsoriginal.R
 import com.example.bulletnewsoriginal.model.CategoryDatabaseItem
 import com.example.bulletnewsoriginal.util.SharedPreferenceService
+import com.example.bulletnewsoriginal.viewModel.BottomSheetFragmentViewModel
 import com.example.bulletnewsoriginal.viewModel.MainFragmentViewModel
 import com.google.android.material.transition.MaterialFadeThrough
 import com.google.android.material.transition.SlideDistanceProvider
@@ -29,9 +31,10 @@ class BottomSheetFragment : Fragment() {
     private val categoryItem6 = CategoryDatabaseItem("")
     private val categoryItem7 = CategoryDatabaseItem("")
 
-
+    private var databaseIsEmpty : Boolean? = null
     private lateinit var mainFragmentViewModel : MainFragmentViewModel
     private lateinit var sharedPreferenceService : SharedPreferenceService
+    private lateinit var bottomSheetFragmentViewModel : BottomSheetFragmentViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enterTransition = MaterialFadeThrough().apply {
@@ -56,13 +59,24 @@ class BottomSheetFragment : Fragment() {
         handleSystemUI()
         sharedPreferenceService = SharedPreferenceService(requireContext())
 
-        mainFragmentViewModel = ViewModelProviders.of(this).get(MainFragmentViewModel::class.java)
+        mainFragmentViewModel = ViewModelProvider(this)[MainFragmentViewModel::class.java]
+        bottomSheetFragmentViewModel = ViewModelProvider(this)[BottomSheetFragmentViewModel::class.java]
+
         handleCheckboxes()
         clickedApplyButton()
-        Toast.makeText(requireContext(), "Select topics that you are interested in ✌ 😎", Toast.LENGTH_LONG).show()
+        checkDataBaseIsEmpty()
         super.onViewCreated(view, savedInstanceState)
     }
 
+    private fun checkDataBaseIsEmpty(){
+        bottomSheetFragmentViewModel.databaseList.observe(viewLifecycleOwner){
+            println(it)
+            if (it.isEmpty()) {
+                Toast.makeText(requireContext(), "Select topics that you are interested in ✌ 😎", Toast.LENGTH_LONG).show()
+                println("EMPTY")
+            }
+        }
+    }
 
     private fun handleCheckboxes(){
 
