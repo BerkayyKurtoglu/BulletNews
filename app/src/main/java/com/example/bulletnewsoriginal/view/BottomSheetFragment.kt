@@ -31,7 +31,6 @@ class BottomSheetFragment : Fragment() {
     private val categoryItem6 = CategoryDatabaseItem("")
     private val categoryItem7 = CategoryDatabaseItem("")
 
-    private var databaseIsEmpty : Boolean? = null
     private lateinit var mainFragmentViewModel : MainFragmentViewModel
     private lateinit var sharedPreferenceService : SharedPreferenceService
     private lateinit var bottomSheetFragmentViewModel : BottomSheetFragmentViewModel

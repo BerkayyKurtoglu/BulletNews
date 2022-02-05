@@ -37,7 +37,6 @@ import kotlin.math.abs
 
 class HomeFragment : Fragment() {
 
-    private lateinit var viewPagerAdapter :ViewPagerAdapterForHomeFragment
     private lateinit var viewPager2: ViewPager2
     private lateinit var floatingActionButton: FloatingActionButton
     private lateinit var mainRecyclerViewAdapter: HomeFragmentMainRecyclerViewAdapter
@@ -123,22 +122,9 @@ class HomeFragment : Fragment() {
             }
         }
 
-        /*mainFragmentViewModel.topHeadLinesLiveData.observe(viewLifecycleOwner){
-            it?.let {
-                /*viewPagerAdapter = ViewPagerAdapterForHomeFragment(requireContext(),homeFragment_topHeadlines_seeAllText,it)
-                viewPager2.adapter = viewPagerAdapter*/
-            }
-        }*/
-
         mainFragmentViewModel.loadingStatus.observe(viewLifecycleOwner){
             it?.let {
-                if (it){
-                    homeFragment_progressBar.visibility = View.VISIBLE
-                    homeFragment_total_screen.visibility = View.INVISIBLE
-                }else{
-                    homeFragment_progressBar.visibility = View.INVISIBLE
-                    homeFragment_total_screen.visibility = View.VISIBLE
-                }
+                homeFragment_swipeRefreshLayout.isRefreshing = it
             }
         }
         mainFragmentViewModel.errorStatus.observe(viewLifecycleOwner){
@@ -146,6 +132,7 @@ class HomeFragment : Fragment() {
             it?.let {
                 if (it){
                     println("Error")
+                    homeFragment_swipeRefreshLayout.isRefreshing = false
                     homeFragment_total_screen.visibility = View.INVISIBLE
                 }
             }
