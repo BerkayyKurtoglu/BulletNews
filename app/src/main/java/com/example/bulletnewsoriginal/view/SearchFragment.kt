@@ -3,9 +3,6 @@ package com.example.bulletnewsoriginal.view
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.transition.ChangeBounds
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,28 +11,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionManager
 import com.example.bulletnewsoriginal.R
-import com.example.bulletnewsoriginal.adapter.SearchFragmentChildRecyclerViewAdapter
 import com.example.bulletnewsoriginal.adapter.SearchFragmentPagedAdapter
 import com.example.bulletnewsoriginal.adapter.SearchFragmentSearchAdapter
 import com.example.bulletnewsoriginal.adapter.ViewPagerAdapterForSearchFragment
-import com.example.bulletnewsoriginal.model.NewsDataClass
 import com.example.bulletnewsoriginal.util.SharedPreferenceService
 import com.example.bulletnewsoriginal.viewModel.SearchFragmentViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.android.material.transition.MaterialSharedAxis
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.view_pager_item_search_fragment.*
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
@@ -46,9 +39,11 @@ class SearchFragment : Fragment() {
 
     private lateinit var searchFragmentViewModel: SearchFragmentViewModel
     private lateinit var viewPagerAdapterForSearchFragment : ViewPagerAdapterForSearchFragment
-    private lateinit var sharedPreferenceService: SharedPreferenceService
     private lateinit var searchFragmentSearchAdapter: SearchFragmentSearchAdapter
     private lateinit var searchFragmentPagedAdapter: SearchFragmentPagedAdapter
+
+    @Inject lateinit var sharedPreferenceService: SharedPreferenceService
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -58,10 +53,10 @@ class SearchFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        searchFragmentViewModel = ViewModelProviders.of(this).get(SearchFragmentViewModel::class.java)
+        searchFragmentViewModel = ViewModelProvider(this)[SearchFragmentViewModel::class.java]
         operateSystemUI()
         operateTabLayout()
-        sharedPreferenceService = SharedPreferenceService(requireContext())
+        //sharedPreferenceService = SharedPreferenceService(requireContext())
         controlDarkMode()
 
         searchFragmentViewModel.getNewsForSearchFragment(requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
@@ -72,34 +67,7 @@ class SearchFragment : Fragment() {
         searchFragment_searchRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         searchFragment_searchRecyclerView.adapter = searchFragmentPagedAdapter
 
-        var job : Job? = null
-
-        searchFragment_searchBox.addTextChangedListener {
-            val sharedAxis = MaterialSharedAxis(MaterialSharedAxis.Y, true)
-            TransitionManager.beginDelayedTransition(view.rootView as ViewGroup, sharedAxis)
-            job?.cancel()
-            it?.let {
-                if (it.toString().isNotEmpty() && it.toString().length >= 3){
-                    searchFragment_tabLayout.visibility = View.GONE
-                    searchFragment_viewPager_recyclerView.visibility = View.GONE
-                    searchFragment_searchRecyclerView.visibility = View.VISIBLE
-                }else{
-                    searchFragment_tabLayout.visibility = View.VISIBLE
-                    searchFragment_viewPager_recyclerView.visibility = View.VISIBLE
-                    searchFragment_searchRecyclerView.visibility = View.GONE
-                }
-            }
-            job = lifecycleScope.launch {
-                delay(1000)
-                it?.let {
-                    //searchFragmentViewModel.searchNews(it.toString())
-                    val pager = searchFragmentViewModel.searchPagedNews(it.toString())
-                    pager.collectLatest {
-                        searchFragmentPagedAdapter.submitData(it)
-                    }
-                }
-            }
-        }
+        makeSearch(view)
 
         observeViewModel()
         super.onViewCreated(view, savedInstanceState)
@@ -195,9 +163,40 @@ class SearchFragment : Fragment() {
             }
         })
 
-
     }
 
+    private fun makeSearch(view : View){
+
+        var job : Job? = null
+
+        searchFragment_searchBox.addTextChangedListener {
+            val sharedAxis = MaterialSharedAxis(MaterialSharedAxis.Y, true)
+            TransitionManager.beginDelayedTransition(view.rootView as ViewGroup, sharedAxis)
+            job?.cancel()
+            it?.let {
+                if (it.toString().isNotEmpty() && it.toString().length >= 3){
+                    searchFragment_tabLayout.visibility = View.GONE
+                    searchFragment_viewPager_recyclerView.visibility = View.GONE
+                    searchFragment_searchRecyclerView.visibility = View.VISIBLE
+                }else{
+                    searchFragment_tabLayout.visibility = View.VISIBLE
+                    searchFragment_viewPager_recyclerView.visibility = View.VISIBLE
+                    searchFragment_searchRecyclerView.visibility = View.GONE
+                }
+            }
+            job = lifecycleScope.launch {
+                delay(1000)
+                it?.let {
+                    //searchFragmentViewModel.searchNews(it.toString())
+                    val pager = searchFragmentViewModel.searchPagedNews(it.toString())
+                    pager.collectLatest {
+                        searchFragmentPagedAdapter.submitData(it)
+                    }
+                }
+            }
+        }
+
+    }
 
 
 }
