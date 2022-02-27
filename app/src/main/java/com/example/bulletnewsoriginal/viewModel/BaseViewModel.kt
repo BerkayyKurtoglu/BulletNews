@@ -17,4 +17,5 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
         job.cancel()
         super.onCleared()
     }
+
 }
