@@ -22,6 +22,7 @@ class BottomSheetFragmentViewModel(
         get() = databaseListMutable
 
     init {
+
         viewModelScope.launch {
                val response = savedNewsDAO.getAllCategories()
                 response.let {
