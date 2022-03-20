@@ -4,13 +4,9 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.bulletnewsoriginal.model.Article
 import com.example.bulletnewsoriginal.model.CategoryDatabaseItem
 import com.example.bulletnewsoriginal.service.categoryDatabase.CategoryDatabase
-import com.example.bulletnewsoriginal.service.savingNewsDatabase.SavingNewsDatabase
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 class BottomSheetFragmentViewModel(
     application : Application
