@@ -17,6 +17,8 @@ class BottomSheetFragmentViewModel(
     val databaseList : LiveData<List<CategoryDatabaseItem>>
         get() = databaseListMutable
 
+    
+
     init {
 
         viewModelScope.launch {
