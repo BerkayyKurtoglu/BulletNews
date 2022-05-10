@@ -39,6 +39,7 @@ android {
         jvmTarget = '1.8'
         useIR = true
     }
+    namespace 'com.example.bulletnewsoriginal'
 }
 
 dependencies {

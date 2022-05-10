@@ -18,8 +18,6 @@ class BottomSheetFragmentViewModel(
         get() = databaseListMutable
 
 
-    
-
     init {
 
         viewModelScope.launch {
