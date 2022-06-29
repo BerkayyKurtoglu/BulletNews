@@ -28,6 +28,11 @@ Dark Mode | Saved News
 - Jetpack Navigation Component
 - Disposable
 - Glide
+
+### MAD (Modern Android Development) ScoreCard
+![summary](https://user-images.githubusercontent.com/88981781/176500131-09f3d2ac-ba8a-44c5-bffe-300cbaf0bc82.png)
+
+
 ### Soon ; 
 - [x] Dark mode integration
 - [x] You will be able to share news 
